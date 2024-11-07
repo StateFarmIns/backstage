@@ -25,6 +25,7 @@ import {
   removeUnsafeIframes,
   removeUnsafeLinks,
   removeUnsafeMetaTags,
+  isHost,
 } from './hooks';
 
 /**
@@ -46,13 +47,80 @@ export const useSanitizerTransformer = (): Transformer => {
 
   return useCallback(
     async (dom: Element) => {
-      const hosts = config?.getOptionalStringArray('allowedIframeHosts');
+      const iframeConfigs =
+        config?.getOptionalConfigArray('allowedIframeHosts');
+      // holds all allowable iframe attributes since some attributes  might be custom
+      // and will be stripped at the end even if allowed through the uponSanitizeElement
+      const allIframeAllowedAttributes = ['src'];
 
       DOMPurify.addHook('beforeSanitizeElements', removeUnsafeLinks);
       const tags = ['link', 'meta'];
 
-      if (hosts) {
+      if (iframeConfigs) {
+        // by default we need to keep track of 'all' original iframe attributes to allow DOMPurify to handle them normally
+        const baseAllowedAttributes = [
+          'allow',
+          'allowfullscreen',
+          'allowpaymentrequest',
+          'browsingtopics',
+          'credentialless',
+          'csp',
+          'height',
+          'loading',
+          'name',
+          'referrerpolicy',
+          'sandbox',
+          'src',
+          'srcdoc',
+          'width',
+        ];
         tags.push('iframe');
+
+        const hosts = [];
+        for (const iframeConfig of iframeConfigs) {
+          // check that the config is correct
+          const validKeys = ['src', 'allowedAttributes'];
+          for (const key of iframeConfig.keys()) {
+            if (!validKeys.includes(key)) {
+              const valid = validKeys.map(k => `'${k}'`).join(', ');
+              throw new Error(
+                `Invalid key '${key}' in 'allowedIframeHosts' config, expected one of ${valid}`,
+              );
+            }
+          }
+
+          const host = iframeConfig.getString('src');
+          hosts.push(host);
+
+          const currentIframeAllowedAttributes =
+            iframeConfig.getOptionalStringArray('allowedAttributes') || [];
+          // add to our list of allowed attributes for not stripping at the end
+          allIframeAllowedAttributes.push(...currentIframeAllowedAttributes);
+          const allowedAttributes = baseAllowedAttributes.concat(
+            currentIframeAllowedAttributes,
+          );
+
+          DOMPurify.addHook('uponSanitizeElement', (currNode, data) => {
+            if (data.tagName === 'iframe') {
+              if (isHost(currNode, host)) {
+                for (const attr of currNode.attributes) {
+                  if (
+                    baseAllowedAttributes.includes(
+                      attr.name.toLocaleLowerCase(),
+                    )
+                  ) {
+                    break;
+                  }
+                  if (
+                    !allowedAttributes.includes(attr.name.toLocaleLowerCase())
+                  ) {
+                    currNode.removeAttribute(attr.name);
+                  }
+                }
+              }
+            }
+          });
+        }
         DOMPurify.addHook('beforeSanitizeElements', removeUnsafeIframes(hosts));
       }
 
@@ -100,7 +168,7 @@ export const useSanitizerTransformer = (): Transformer => {
       return DOMPurify.sanitize(dom.outerHTML, {
         ADD_TAGS: tags,
         FORBID_TAGS: ['style'],
-        ADD_ATTR: ['http-equiv', 'content', 'dominant-baseline'],
+        ADD_ATTR: ['http-equiv', 'content', 'dominant-baseline', ...allIframeAllowedAttributes],
         WHOLE_DOCUMENT: true,
         RETURN_DOM: true,
         ALLOWED_URI_REGEXP: allowedURIRegExp,
