@@ -97,7 +97,7 @@ const defaultGetLabel: GetLabelFunction = (visit: Visit): string => {
 };
 
 // Create the context
-const ItemCategoryContext = createContext<ItemCategoryContextValue>({
+const VisitDisplayContext = createContext<ItemCategoryContextValue>({
   getChipColor: defaultGetChipColor,
   getLabel: defaultGetLabel,
 });
@@ -117,9 +117,9 @@ export const ItemCategoryProvider = ({
   };
 
   return (
-    <ItemCategoryContext.Provider value={value}>
+    <VisitDisplayContext.Provider value={value}>
       {children}
-    </ItemCategoryContext.Provider>
+    </VisitDisplayContext.Provider>
   );
 };
 
@@ -127,11 +127,11 @@ export const ItemCategoryProvider = ({
  * Hook to use the ItemCategory context
  * @public
  */
-export const useItemCategory = (): ItemCategoryContextValue => {
-  const context = useContext(ItemCategoryContext);
+export const useVisitDisplay = (): ItemCategoryContextValue => {
+  const context = useContext(VisitDisplayContext);
   if (!context) {
     throw new Error(
-      'useItemCategory must be used within an ItemCategoryProvider',
+      'useVisitDisplay must be used within a VisitDisplayProvider',
     );
   }
   return context;
