@@ -14,4 +14,11 @@
  * limitations under the License.
  */
 
-export { VisitList } from './VisitList';
+// Public API exports
+export { ItemCategoryProvider, useItemCategory } from './Context';
+export type {
+  GetChipColorFunction,
+  GetLabelFunction,
+  ItemCategoryContextValue,
+  ItemCategoryProviderProps,
+} from './Context';

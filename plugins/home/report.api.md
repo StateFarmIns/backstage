@@ -118,6 +118,12 @@ export type FeaturedDocsCardProps = {
 };
 
 // @public
+export type GetChipColorFunction = (visit: Visit) => string;
+
+// @public
+export type GetLabelFunction = (visit: Visit) => string;
+
+// @public
 export const HeaderWorldClock: (props: {
   clockConfigs: ClockConfig[];
   customTimeFormat?: Intl.DateTimeFormatOptions;
@@ -172,6 +178,31 @@ export const homePlugin: BackstagePlugin<
 
 // @public
 export const isOperator: (s: string) => s is Operators;
+
+// @public
+export interface ItemCategoryContextValue {
+  // (undocumented)
+  getChipColor: GetChipColorFunction;
+  // (undocumented)
+  getLabel: GetLabelFunction;
+}
+
+// @public
+export const ItemCategoryProvider: ({
+  children,
+  getChipColor,
+  getLabel,
+}: ItemCategoryProviderProps) => JSX_2.Element;
+
+// @public
+export interface ItemCategoryProviderProps {
+  // (undocumented)
+  children: ReactNode;
+  // (undocumented)
+  getChipColor?: GetChipColorFunction;
+  // (undocumented)
+  getLabel?: GetLabelFunction;
+}
 
 // @public
 export type LayoutConfiguration = {
@@ -246,6 +277,9 @@ export type ToolkitContentProps = {
 };
 
 // @public
+export const useItemCategory: () => ItemCategoryContextValue;
+
+// @public
 export type Visit = {
   id: string;
   name: string;
@@ -268,14 +302,23 @@ export type VisitedByTypeProps = {
 };
 
 // @public
+export type VisitEnrichmentFunction = (visit: {
+  name: string;
+  pathname: string;
+  entityRef?: string;
+}) => Record<string, any> | Promise<Record<string, any>>;
+
+// @public
 export const VisitListener: ({
   children,
   toEntityRef,
   visitName,
+  enrichVisit,
 }: {
   children?: ReactNode;
   toEntityRef?: ({ pathname }: { pathname: string }) => string | undefined;
   visitName?: ({ pathname }: { pathname: string }) => string;
+  enrichVisit?: VisitEnrichmentFunction;
 }) => JSX.Element;
 
 // @public
