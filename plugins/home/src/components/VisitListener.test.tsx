@@ -15,7 +15,7 @@
  */
 import { TestApiProvider, renderInTestApp } from '@backstage/test-utils';
 import { Visit, visitsApiRef } from '../api';
-import { VisitListener } from './VisitListener';
+import { VisitListener, VisitEnrichmentFunction } from './VisitListener';
 import { waitFor } from '@testing-library/react';
 
 const visits: Array<Visit> = [

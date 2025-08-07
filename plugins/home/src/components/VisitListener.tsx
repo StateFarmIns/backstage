@@ -194,11 +194,7 @@ export const VisitListener = ({
       }
 
       visitsApi.save({
-        visit: {
-          name: visitNameImpl({ pathname }),
-          pathname,
-          entityRef: toEntityRefImpl({ pathname }),
-        },
+        visit: visitToSave,
       });
     });
     return () => cancelAnimationFrame(requestId);
