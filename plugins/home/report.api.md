@@ -302,11 +302,16 @@ export type VisitedByTypeProps = {
 };
 
 // @public
-export type VisitEnrichmentFunction = (visit: {
+export type VisitEnrichmentFunction = (
+  visit: VisitInput,
+) => Record<string, any> | Promise<Record<string, any>>;
+
+// @public
+export type VisitInput = {
   name: string;
   pathname: string;
   entityRef?: string;
-}) => Record<string, any> | Promise<Record<string, any>>;
+};
 
 // @public
 export const VisitListener: ({

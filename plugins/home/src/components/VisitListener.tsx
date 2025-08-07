@@ -76,14 +76,22 @@ const getVisitName =
 
 /**
  * @public
- * Type definition for the visit enrichment function
- * This allows adding custom properties to visits at save time
+ * Type definition for visit data before it's saved (without auto-generated fields)
  */
-export type VisitEnrichmentFunction = (visit: {
+export type VisitInput = {
   name: string;
   pathname: string;
   entityRef?: string;
-}) => Record<string, any> | Promise<Record<string, any>>;
+};
+
+/**
+ * @public
+ * Type definition for the visit enrichment function
+ * This allows adding custom properties to visits at save time
+ */
+export type VisitEnrichmentFunction = (
+  visit: VisitInput,
+) => Record<string, any> | Promise<Record<string, any>>;
 
 /**
  * @public
