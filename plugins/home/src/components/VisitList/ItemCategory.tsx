@@ -17,7 +17,7 @@
 import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core/styles';
 import { Visit } from '../../api/VisitsApi';
-import { useItemCategory } from './Context';
+import { useVisitDisplay } from './Context';
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export const ItemCategory = ({ visit }: { visit: Visit }) => {
   const classes = useStyles();
-  const { getChipColor, getLabel } = useItemCategory();
+  const { getChipColor, getLabel } = useVisitDisplay();
 
   return (
     <Chip

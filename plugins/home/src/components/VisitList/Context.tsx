@@ -35,16 +35,16 @@ export type GetLabelFunction = (visit: Visit) => string;
  * Context value interface
  * @public
  */
-export interface ItemCategoryContextValue {
+export interface VisitDisplayContextValue {
   getChipColor: GetChipColorFunction;
   getLabel: GetLabelFunction;
 }
 
 /**
- * Props for the ItemCategoryProvider
+ * Props for the VisitDisplayProvider
  * @public
  */
-export interface ItemCategoryProviderProps {
+export interface VisitDisplayProviderProps {
   children: ReactNode;
   getChipColor?: GetChipColorFunction;
   getLabel?: GetLabelFunction;
@@ -97,21 +97,21 @@ const defaultGetLabel: GetLabelFunction = (visit: Visit): string => {
 };
 
 // Create the context
-const VisitDisplayContext = createContext<ItemCategoryContextValue>({
+const VisitDisplayContext = createContext<VisitDisplayContextValue>({
   getChipColor: defaultGetChipColor,
   getLabel: defaultGetLabel,
 });
 
 /**
- * Provider component for ItemCategory customization
+ * Provider component for VisitDisplay customization
  * @public
  */
-export const ItemCategoryProvider = ({
+export const VisitDisplayProvider = ({
   children,
   getChipColor = defaultGetChipColor,
   getLabel = defaultGetLabel,
-}: ItemCategoryProviderProps) => {
-  const value: ItemCategoryContextValue = {
+}: VisitDisplayProviderProps) => {
+  const value: VisitDisplayContextValue = {
     getChipColor,
     getLabel,
   };
@@ -124,10 +124,10 @@ export const ItemCategoryProvider = ({
 };
 
 /**
- * Hook to use the ItemCategory context
+ * Hook to use the VisitDisplay context
  * @public
  */
-export const useVisitDisplay = (): ItemCategoryContextValue => {
+export const useVisitDisplay = (): VisitDisplayContextValue => {
   const context = useContext(VisitDisplayContext);
   if (!context) {
     throw new Error(

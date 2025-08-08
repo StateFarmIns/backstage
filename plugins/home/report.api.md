@@ -180,31 +180,6 @@ export const homePlugin: BackstagePlugin<
 export const isOperator: (s: string) => s is Operators;
 
 // @public
-export interface ItemCategoryContextValue {
-  // (undocumented)
-  getChipColor: GetChipColorFunction;
-  // (undocumented)
-  getLabel: GetLabelFunction;
-}
-
-// @public
-export const ItemCategoryProvider: ({
-  children,
-  getChipColor,
-  getLabel,
-}: ItemCategoryProviderProps) => JSX_2.Element;
-
-// @public
-export interface ItemCategoryProviderProps {
-  // (undocumented)
-  children: ReactNode;
-  // (undocumented)
-  getChipColor?: GetChipColorFunction;
-  // (undocumented)
-  getLabel?: GetLabelFunction;
-}
-
-// @public
 export type LayoutConfiguration = {
   component: ReactElement | string;
   x: number;
@@ -277,7 +252,7 @@ export type ToolkitContentProps = {
 };
 
 // @public
-export const useItemCategory: () => ItemCategoryContextValue;
+export const useVisitDisplay: () => VisitDisplayContextValue;
 
 // @public
 export type Visit = {
@@ -288,6 +263,31 @@ export type Visit = {
   timestamp: number;
   entityRef?: string;
 };
+
+// @public
+export interface VisitDisplayContextValue {
+  // (undocumented)
+  getChipColor: GetChipColorFunction;
+  // (undocumented)
+  getLabel: GetLabelFunction;
+}
+
+// @public
+export const VisitDisplayProvider: ({
+  children,
+  getChipColor,
+  getLabel,
+}: VisitDisplayProviderProps) => JSX_2.Element;
+
+// @public
+export interface VisitDisplayProviderProps {
+  // (undocumented)
+  children: ReactNode;
+  // (undocumented)
+  getChipColor?: GetChipColorFunction;
+  // (undocumented)
+  getLabel?: GetLabelFunction;
+}
 
 // @public (undocumented)
 export type VisitedByTypeKind = 'recent' | 'top';

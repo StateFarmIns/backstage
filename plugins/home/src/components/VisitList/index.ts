@@ -15,10 +15,10 @@
  */
 
 // Public API exports
-export { ItemCategoryProvider, useItemCategory } from './Context';
+export { VisitDisplayProvider, useVisitDisplay } from './Context';
 export type {
   GetChipColorFunction,
   GetLabelFunction,
-  ItemCategoryContextValue,
-  ItemCategoryProviderProps,
+  VisitDisplayContextValue,
+  VisitDisplayProviderProps,
 } from './Context';
