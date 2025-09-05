@@ -149,6 +149,7 @@ export type SidebarSubmenuItemProps = {
   exact?: boolean;
   matchHash?: boolean;
   initialShowDropdown?: boolean;
+  startComponent?: React.ReactNode;
 };
 
 /**
@@ -272,6 +273,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
           onClick={closeSubmenu}
           onTouchStart={e => e.stopPropagation()}
         >
+          {startComponent}
           {Icon && <Icon fontSize="small" />}
           <Typography
             variant="subtitle1"
