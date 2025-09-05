@@ -148,6 +148,7 @@ export type SidebarSubmenuItemProps = {
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
   initialShowDropdown?: boolean;
+  startComponent?: React.ReactNode;
 };
 
 /**
@@ -156,7 +157,15 @@ export type SidebarSubmenuItemProps = {
  * @public
  */
 export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
-  const { title, subtitle, to, icon: Icon, dropdownItems, exact } = props;
+  const {
+    title,
+    subtitle,
+    to,
+    icon: Icon,
+    dropdownItems,
+    exact,
+    startComponent,
+  } = props;
   const classes = useStyles();
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -257,6 +266,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
           onClick={closeSubmenu}
           onTouchStart={e => e.stopPropagation()}
         >
+          {startComponent}
           {Icon && <Icon fontSize="small" />}
           <Typography
             variant="subtitle1"
