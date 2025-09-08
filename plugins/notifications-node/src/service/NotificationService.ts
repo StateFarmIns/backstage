@@ -19,4 +19,5 @@ import { NotificationSendOptions } from './DefaultNotificationService';
 /** @public */
 export interface NotificationService {
   send(options: NotificationSendOptions): Promise<void>;
+  getRecipients?(options: NotificationSendOptions): Promise<string[]>;
 }

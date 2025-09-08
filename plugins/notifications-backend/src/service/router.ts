@@ -731,5 +731,50 @@ export async function createRouter(
   router.post('/', createNotificationHandler);
   router.post('/notifications', createNotificationHandler);
 
+  const getNotificationRecipientsHandler = async (
+    req: Request<any, NotificationSendOptions>,
+    res: Response,
+  ) => {
+    const credentials = await httpAuth.credentials(req, {
+      allow: ['service'],
+    });
+
+    const origin = credentials.principal.subject;
+    const opts = await processOptions(req.body, origin);
+    const { recipients } = opts;
+    let users: string[] = [];
+
+    if (!recipients) {
+      const missing = [!recipients ? 'recipients' : null].filter(Boolean);
+      const err = `Invalid notification request received: missing ${missing.join(
+        ', ',
+      )}`;
+      throw new InputError(err);
+    }
+
+    if (recipients.type === 'entity') {
+      const entityRef = recipients.entityRef;
+
+      try {
+        users = await getUsersForEntityRef(
+          entityRef,
+          recipients.excludeEntityRef ?? [],
+          { auth, catalog },
+        );
+      } catch (e) {
+        throw new InputError('Failed to resolve notification receivers', e);
+      }
+    } else {
+      throw new InputError(
+        `Invalid recipients type, please use either 'broadcast' or 'entity'`,
+      );
+    }
+
+    res.json(users);
+  };
+
+  // Get notification recipients
+  router.post('/notification-recipients', getNotificationRecipientsHandler);
+
   return router;
 }

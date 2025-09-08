@@ -86,4 +86,42 @@ export class DefaultNotificationService implements NotificationService {
       throw new Error(`Failed to send notifications: ${error}`);
     }
   }
+
+  async getRecipients(
+    notification: NotificationSendOptions,
+  ): Promise<string[]> {
+    try {
+      const baseUrl = await this.discovery.getBaseUrl('notifications');
+      const { token } = await this.auth.getPluginRequestToken({
+        onBehalfOf: await this.auth.getOwnServiceCredentials(),
+        targetPluginId: 'notifications',
+      });
+
+      const response = await fetch(`${baseUrl}/notification-recipients`, {
+        method: 'POST',
+        body: JSON.stringify(notification),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      const recipients = await response.json();
+      if (!Array.isArray(recipients)) {
+        throw new Error(
+          'Invalid response format, expected an array of recipients',
+        );
+      }
+
+      return recipients;
+    } catch (error) {
+      // TODO: Should not throw in optimal case, see BEP
+      throw new Error(`Failed to get recipients: ${error}`);
+    }
+  }
 }
