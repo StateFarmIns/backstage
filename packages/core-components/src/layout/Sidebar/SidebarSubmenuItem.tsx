@@ -147,6 +147,7 @@ export type SidebarSubmenuItemProps = {
   icon?: IconComponent;
   dropdownItems?: SidebarSubmenuItemDropdownItem[];
   exact?: boolean;
+  matchHash?: boolean;
   initialShowDropdown?: boolean;
 };
 
@@ -156,7 +157,16 @@ export type SidebarSubmenuItemProps = {
  * @public
  */
 export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
-  const { title, subtitle, to, icon: Icon, dropdownItems, exact } = props;
+  const {
+    title,
+    subtitle,
+    to,
+    icon: Icon,
+    dropdownItems,
+    exact,
+    matchHash,
+    startComponent,
+  } = props;
   const classes = useStyles();
   const { setIsHoveredOn } = useContext(SidebarItemWithSubmenuContext);
   const closeSubmenu = () => {
@@ -164,7 +174,7 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   };
   const toLocation = useResolvedPath(to ?? '');
   const currentLocation = useLocation();
-  let isActive = isLocationMatch(currentLocation, toLocation, exact);
+  let isActive = isLocationMatch(currentLocation, toLocation, exact, matchHash);
 
   const [showDropDown, setShowDropDown] = useState(
     props.initialShowDropdown ?? false,
@@ -175,7 +185,12 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   if (dropdownItems !== undefined) {
     dropdownItems.some(item => {
       const resolvedPath = resolvePath(item.to);
-      isActive = isLocationMatch(currentLocation, resolvedPath, exact);
+      isActive = isLocationMatch(
+        currentLocation,
+        resolvedPath,
+        exact,
+        matchHash,
+      );
       return isActive;
     });
     return (
