@@ -2,11 +2,81 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://backstage.io/blog</id>
     <title>Backstage Software Catalog and Developer Platform Blog</title>
-    <updated>2025-08-08T00:00:00.000Z</updated>
+    <updated>2025-10-15T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://backstage.io/blog"/>
     <subtitle>Backstage Software Catalog and Developer Platform Blog</subtitle>
     <icon>https://backstage.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Get ready for Backstage ContribFest at KubeCon!]]></title>
+        <id>https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide</id>
+        <link href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide"/>
+        <updated>2025-10-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Get ready for Backstage ContribFest at KubeCon!]]></summary>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Get ready for Backstage ContribFest at KubeCon!" src="https://backstage.io/assets/images/backstage-contribfest-kubecon-guide-header-9850fe29fe8abc085e985b25ea00427c.png" width="1200" height="628" class="img_ev3q"></p>
+<p>Pack your laptop and mark your calendars! Backstage will once again be taking part in the ContribFest track at KubeCon! Join us at KubeCon 2025 North America in Atlanta on Monday, November 13. Feel free to <a href="https://kccncna2025.sched.com/event/27Nl6/contribfest-level-up-your-open-source-journey-hands-on-backstage-contributions-andre-wanlin-patrik-oldsberg-emma-indal-spotify-aramis-sennyey-doordash-kurt-king-procore" target="_blank" rel="noopener noreferrer">bookmark it on your schedule</a>. Then read on to get yourself prepared for the session beforehand to maximize your time working with other contributors and Backstage experts during the session.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="contrib-what">Contrib-what?<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#contrib-what" class="hash-link" aria-label="Direct link to Contrib-what?" title="Direct link to Contrib-what?">​</a></h2>
+<p>Before we dive into preparation for the Backstage ContribFest session we should probably take a detour and answer the question: What the heck is ContribFest?</p>
+<p>ContribFest is a track at KubeCon where various CNCF projects will host hands-on sessions working with their respective communities on contributions towards their projects. You don't have to be a past contributor to participate — new community members are encouraged to join!</p>
+<p>These sessions are 75 minutes long and take place in a room with roughly a dozen circular tables that seat about eight people making it easy to work and collaborate. They usually lead off with some getting started steps and then give attendees the rest of the time to work on their contributions with the aid of experts from the project.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-to-prepare-before-you-get-there">What to prepare before you get there<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#what-to-prepare-before-you-get-there" class="hash-link" aria-label="Direct link to What to prepare before you get there" title="Direct link to What to prepare before you get there">​</a></h2>
+<p>For the Backstage ContribFest session, there are some preparation steps you can complete on your own well before the session. Let's cover those now:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-fork-the-repos">1. Fork the repos<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#1-fork-the-repos" class="hash-link" aria-label="Direct link to 1. Fork the repos" title="Direct link to 1. Fork the repos">​</a></h3>
+<p>You'll have the option to contribute to the Backstage repo or the Backstage Community Plugins repo. To get those onto your system, you need to follow the GitHub <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository" target="_blank" rel="noopener noreferrer">"Forking a repository"</a> guide and fork these:</p>
+<ul>
+<li>Backstage: <a href="https://github.com/backstage/backstage" target="_blank" rel="noopener noreferrer">https://github.com/backstage/backstage</a></li>
+<li>Backstage Community Plugins: <a href="https://github.com/backstage/community-plugins" target="_blank" rel="noopener noreferrer">https://github.com/backstage/community-plugins</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-update-nodejs-and-yarn">2. Update Node.js and Yarn<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#2-update-nodejs-and-yarn" class="hash-link" aria-label="Direct link to 2. Update Node.js and Yarn" title="Direct link to 2. Update Node.js and Yarn">​</a></h3>
+<p>Backstage has <a href="https://backstage.io/docs/getting-started/#prerequisites" target="_blank" rel="noopener noreferrer">a few prerequisites</a> that you'll need to have in place before you can run Backstage or the various Backstage Community Plugins. Here's what you need:</p>
+<ul>
+<li>
+<p>Backstage uses Node.js — you'll want to install version 22 for the session.</p>
+<ul>
+<li>To make this easier, we recommend you use Node Version Manager nvm, you can <a href="https://github.com/nvm-sh/nvm#install--update-script" target="_blank" rel="noopener noreferrer">follow these instructions to install it</a>.</li>
+<li>Once you have nvm installed, you can run this command to get Node 22 installed and activated: <code>nvm install 22</code></li>
+</ul>
+</li>
+<li>
+<p>Yarn is the package manager used by Backstage — you'll want to install it as well.</p>
+<ul>
+<li>Simply run <code>corepack enable</code> to do so.</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-test-your-setups">3. Test your setups<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#3-test-your-setups" class="hash-link" aria-label="Direct link to 3. Test your setups" title="Direct link to 3. Test your setups">​</a></h3>
+<p>Now let's do a quick test to confirm that everything is working.</p>
+<p>First, let's check that you can run the Backstage codebase:</p>
+<ol>
+<li>Navigate to your cloned fork of the Backstage repo</li>
+<li>From the root, run <code>yarn install</code></li>
+<li>Then run <code>yarn tsc</code></li>
+<li>Finally run <code>yarn start</code></li>
+<li>Backstage will open in a new browser window or tab</li>
+</ol>
+<p>Now, let's check the Backstage Community Plugins:</p>
+<ol>
+<li>Navigate to your your cloned fork of the Backstage Community Plugins repo</li>
+<li>This repo is structured in a way where there are many plugins that live in their own dedicated workspace — for this test, we'll use the <code>linguist</code> workspace. From the root, run <code>cd workspaces/linguist</code></li>
+<li>From here run <code>yarn install</code></li>
+<li>Then run <code>yarn tsc</code></li>
+<li>Finally run <code>yarn start</code></li>
+<li>An example Backstage app will open in a new browser window or tab</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bonus-check-out-the-contribution-guides">Bonus: Check out the contribution guides<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#bonus-check-out-the-contribution-guides" class="hash-link" aria-label="Direct link to Bonus: Check out the contribution guides" title="Direct link to Bonus: Check out the contribution guides">​</a></h3>
+<p>At this point, you have all the prerequisites in place and are ready to take part in the Backstage ContribFest session. From here, we recommend you take some time to read the contributions guides as that will get you more familiar with the overall process. Here they are:</p>
+<ul>
+<li><a href="https://github.com/backstage/backstage/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Backstage Contribution Guide</a></li>
+<li><a href="https://github.com/backstage/community-plugins/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Backstage Community Plugins Contribution Guide</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-see-you-in-atlanta">👋 See you in Atlanta!<a href="https://backstage.io/blog/2025/10/15/backstage-contribfest-kubecon-guide#-see-you-in-atlanta" class="hash-link" aria-label="Direct link to 👋 See you in Atlanta!" title="Direct link to 👋 See you in Atlanta!">​</a></h2>
+<p>On behalf of myself and the other co-hosts of Backstage ContribFest, thanks for following along! We look forward to seeing you in Atlanta and working with you on your contributions. Make sure to say hello!</p>]]></content>
+        <author>
+            <name>André Wanlin, Spotify</name>
+            <uri>https://github.com/awanlin</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Migrating legacy services to a modern developer portal: A technical guide to Backstage integration]]></title>
         <id>https://backstage.io/blog/2025/08/08/migrating-legacy-services-to-a-modern-developer-portal</id>
@@ -1452,73 +1522,6 @@ Pulumi will then create a container based deployment in Amazon Lightsail.</p>
         <author>
             <name>Bailey Brooks, Spotify</name>
             <uri>http://github.com/bailey</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Backstage Turns Three!]]></title>
-        <id>https://backstage.io/blog/2023/03/15/backstage-turns-3</id>
-        <link href="https://backstage.io/blog/2023/03/15/backstage-turns-3"/>
-        <updated>2023-03-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[backstage turns 3 header image]]></summary>
-        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="backstage turns 3 header image" src="https://backstage.io/assets/images/birthday-783d826731d49f5d80b58506b13a85ba.gif" width="800" height="450" class="img_ev3q"></p>
-<p><strong>TL;DR</strong> Spotify released Backstage into open source three years ago today. Since then, the community has grown by leaps and bounds to stretch across the globe (and the Discord server!). Now that Backstage is a threenager, the growing pains are real. So, on this birthday, we want to cover our collective efforts to make it easier to adopt and contribute to Backstage.</p>
-<!-- -->
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="they-grow-up-so-fast-dont-they">They grow up so fast, don’t they?<a href="https://backstage.io/blog/2023/03/15/backstage-turns-3#they-grow-up-so-fast-dont-they" class="hash-link" aria-label="Direct link to They grow up so fast, don’t they?" title="Direct link to They grow up so fast, don’t they?">​</a></h2>
-<p>Happy birthday, Backstage! Three years ago, Spotify released its homegrown developer portal into the wild after a small team collaborated on an internal Hack Week project. We’d had a lot of conversations with companies looking to build out something similar to what we’d been running for years, so our Hack Week sprint started as an experiment to see if the Backstage core plugins could be valuable in open source.</p>
-<p>It's cliché at this point — because we’ve said it a million times —&nbsp;but no one could have predicted what came next.</p>
-<p>In three short years, Backstage has grown to a Cloud Native Computing Foundation Incubating project, with more than 900 adopters and 1000+ contributors worldwide. Companies like CVS Health, Siemens, LinkedIn, REI, Vodafone, and Lego are building out their own developer portals from the Backstage framework and bringing their learnings to the project.</p>
-<p>A few more stats we love to see (mainly coming from the <a href="https://github.com/backstage/backstage" target="_blank" rel="noopener noreferrer">project repo</a>):</p>
-<ul>
-<li>3k+ project forks</li>
-<li>38k+ commits</li>
-<li>12k+ PRs</li>
-<li>15k+ total contributions</li>
-<li>21k+ stars on GitHub</li>
-<li>9k+ Discord members</li>
-<li>100+ open source plugins in the <a href="https://backstage.io/plugins" target="_blank" rel="noopener noreferrer">plugin marketplace</a></li>
-</ul>
-<p>But, without a doubt, the best thing about the Backstage project is the people in this community. People who are curious, collaborative, and excited to share knowledge. People who’ll sift through Discord at all hours to answer questions and support one another. People who come from all over the world but share a common trait: being passionate about enabling developers to do their best work.</p>
-<p>Don’t take our word for it! Take a look at this birthday video we put together with a few community members.</p>
-<div style="position:relative;overflow:hidden;width:100%;padding-top:56.25%"><iframe style="position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%" src="https://www.youtube.com/embed/rllOa_MfEWw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-growing-pains-are-real">The growing pains are real<a href="https://backstage.io/blog/2023/03/15/backstage-turns-3#the-growing-pains-are-real" class="hash-link" aria-label="Direct link to The growing pains are real" title="Direct link to The growing pains are real">​</a></h2>
-<p>But it's not all sunshine and roses in Backstage-land. If Year 1 was about getting this community going and Year 2 was focused on maturing the platform, then Year 3 needs to address some of the inevitable growing pains a project undergoes as it gains ground.</p>
-<p>We hear two things pretty consistently from the community:</p>
-<ul>
-<li><strong>Backstage is a steep learning curve:</strong> Over the past three years, the project has grown in scope and breadth which can translate to complexity. This is especially true for newcomers looking to get their arms wrapped around the key concepts.</li>
-<li><strong>Backstage has barriers to adoption:</strong> Backstage adopters tell us driving widespread adoption of their developer portal remains the biggest challenge they face. Adoption barriers can be technical but are often cultural.</li>
-</ul>
-<p>The maintainers and some of our most involved community members are actively tackling how we can make the Backstage onboarding process easier for contributors. There are also lots of ways the project could better support adopters on that journey and make adoption faster and smoother.</p>
-<p>We’re looking at everything from cleaning up documentation to opinionated catalog ingestors being discussed in both the Catalog and Adoption monthly SIGs (running meeting notes <a href="https://docs.google.com/document/d/1xg57CDfX2R5jTGbbWANzifm2szEb664kuTwfEEvKgZU/" target="_blank" rel="noopener noreferrer">here</a> and <a href="https://docs.google.com/document/d/1zeYSzXYgh897bxPQmwy2btOwCFlEjlUDLf00riySLRc" target="_blank" rel="noopener noreferrer">here</a>). A few priorities that we’ve already mapped out:</p>
-<ul>
-<li>Make it easier to install, customize, and maintain Backstage</li>
-<li>Provide Golden Paths for adoption</li>
-<li>Improve the experience and the content on <a href="https://backstage.io/docs/overview/what-is-backstage" target="_blank" rel="noopener noreferrer">backstage.io</a></li>
-</ul>
-<p>Because there are now so many mature adopters — Spotify included — there’s so much knowledge on how to create a roadmap for adoption and use cases, how to roll out your developer portal to your teams and drive inner source contributions, how to measure and attribute developer productivity gains, etc.</p>
-<p>Our goal is to tap into the knowledge those adopters have gained and create more tangible resources for the entire community. But we can’t do it without help. And that’s where you come in!</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="getting-more-involved">Getting (more) involved<a href="https://backstage.io/blog/2023/03/15/backstage-turns-3#getting-more-involved" class="hash-link" aria-label="Direct link to Getting (more) involved" title="Direct link to Getting (more) involved">​</a></h2>
-<p>We’re very grateful for the Backstage ride-or-dies: the contributors who show up to every community session, attend every SIG, and are always ready to jump in on any PR or issue.</p>
-<p>But one of the areas where we think the project could greatly improve (and better address some of the growing pains I mentioned above!) is more active contribution — both the total number of people contributing and what they’re contributing.</p>
-<p>We’ve already shared a bit on this but the maintainer team is starting to address this challenge by proposing the following three initiatives:</p>
-<ul>
-<li>Introduce more steps in between first-time contributor and maintainer in the form of a contributor ladder (loosely based on the <a href="https://github.com/cncf/project-template/blob/main/CONTRIBUTOR_LADDER.md" target="_blank" rel="noopener noreferrer">CNCF Project Template</a>).</li>
-<li>Change the ownership model, for example, divide the project up into several project areas, each covering particular parts of the project.</li>
-<li>Introduce a new process for large contributions in the form of Backstage Enhancement Proposals (BEPs).</li>
-</ul>
-<p>These two RFCs on <a href="https://github.com/backstage/backstage/issues/15317" target="_blank" rel="noopener noreferrer">Updated Backstage Governance</a> and <a href="https://github.com/backstage/backstage/issues/15318" target="_blank" rel="noopener noreferrer">Backstage Enhancement Proposals</a> remain open so feel free to read and join the discussion! Watch this space as we’ll share more on the go-forward governance and BEPs plan soon.</p>
-<p>But if you’re brand-new and just looking to get your feet wet, we’ve also <a href="https://backstage.io/docs/getting-started/getting-involved/" target="_blank" rel="noopener noreferrer">compiled some small steps</a> you can take to get involved:</p>
-<ul>
-<li>Report (or squash) bugs: Look through the GitHub issues for <a href="https://github.com/backstage/backstage/labels/bug" target="_blank" rel="noopener noreferrer">bugs</a>, <a href="https://github.com/backstage/backstage/labels/good%20first%20issue" target="_blank" rel="noopener noreferrer">good first issues</a> or <a href="https://github.com/backstage/backstage/labels/help%20wanted" target="_blank" rel="noopener noreferrer">help wanted</a></li>
-<li>Build or suggest a plugin: The Backstage project grows with every new plugin that gets added</li>
-<li>Add non-code contributions: We welcome things that help the community at large, but may not fit into the scope of the core project</li>
-<li>Write documentation or improve the website: The current documentation and project site are pretty limited. Better content helps a lot of those growing pains.</li>
-<li>Contribute to Storybook: Help us <a href="https://github.com/backstage/backstage/labels/help%20wanted" target="_blank" rel="noopener noreferrer">create new components</a> or improve stories for the existing ones</li>
-<li>Submit feedback: The best way to send feedback is to file <a href="https://github.com/backstage/backstage/issues" target="_blank" rel="noopener noreferrer">an issue</a> with as much detail as possible</li>
-<li>Add your company to ADOPTERS: Adding your company to <a href="https://github.com/backstage/backstage/blob/master/ADOPTERS.md" target="_blank" rel="noopener noreferrer">ADOPTERS</a> really helps the project, you can do this by filling out this <a href="https://form.typeform.com/to/zcOaKikB" target="_blank" rel="noopener noreferrer">adopter form</a></li>
-</ul>]]></content>
-        <author>
-            <name>Ben Lambert</name>
-            <uri>https://github.com/benjdlambert</uri>
         </author>
     </entry>
 </feed>
