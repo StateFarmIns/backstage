@@ -37,6 +37,7 @@ export type VisitsStorageApiOptions = {
   storageApi: StorageApi;
   identityApi: IdentityApi;
   transformPathname?: (pathname: string) => string;
+  ignoreRepeatedHitsOnSave?: boolean;
   canSave?: (visit: VisitInput) => boolean | Promise<boolean>;
   enrichVisit?: (
     visit: VisitInput,
@@ -59,12 +60,15 @@ export class VisitsStorageApi implements VisitsApi {
   private readonly storageKeyPrefix = '@backstage/plugin-home:visits';
   private readonly identityApi: IdentityApi;
   private readonly transformPathnameImpl?: (pathname: string) => string;
+  private readonly ignoreRepeatedHitsOnSave: boolean = false;
   private readonly canSaveImpl?: (
     visit: VisitInput,
   ) => boolean | Promise<boolean>;
   private readonly enrichVisitImpl?: (
     visit: VisitInput,
   ) => Promise<Record<string, any>> | Record<string, any>;
+
+  private previousPathname?: string;
 
   static create(options: VisitsStorageApiOptions) {
     return new VisitsStorageApi(options);
@@ -77,6 +81,7 @@ export class VisitsStorageApi implements VisitsApi {
     this.transformPathnameImpl = options.transformPathname;
     this.canSaveImpl = options.canSave;
     this.enrichVisitImpl = options.enrichVisit;
+    this.ignoreRepeatedHitsOnSave = options.ignoreRepeatedHitsOnSave ?? false;
   }
 
   /**
@@ -148,6 +153,9 @@ export class VisitsStorageApi implements VisitsApi {
    * Saves a visit through the visitsApi
    */
   async save(saveParams: VisitsApiSaveParams): Promise<Visit> {
+    const previousPathname = this.previousPathname;
+    this.previousPathname = saveParams.visit.pathname;
+
     let visit = saveParams.visit;
 
     // Transform pathname if needed
@@ -186,7 +194,14 @@ export class VisitsStorageApi implements VisitsApi {
     );
     if (visitIndex >= 0) {
       visitToSave.id = visits[visitIndex].id;
-      visitToSave.hits = visits[visitIndex].hits + 1;
+      if (
+        this.ignoreRepeatedHitsOnSave &&
+        previousPathname === visitToSave.pathname
+      ) {
+        visitToSave.hits = visits[visitIndex].hits;
+      } else {
+        visitToSave.hits = visits[visitIndex].hits + 1;
+      }
       visits[visitIndex] = visitToSave;
     } else {
       visits.push(visitToSave);
@@ -196,6 +211,7 @@ export class VisitsStorageApi implements VisitsApi {
     visits.sort((a, b) => b.timestamp - a.timestamp);
     // Keep the most recent items up to limit
     await this.persistAll(visits.splice(0, this.limit));
+    this.previousPathname = visitToSave.pathname;
     return visitToSave;
   }
 

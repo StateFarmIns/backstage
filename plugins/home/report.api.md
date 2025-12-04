@@ -369,6 +369,7 @@ export type VisitsStorageApiOptions = {
   storageApi: StorageApi;
   identityApi: IdentityApi;
   transformPathname?: (pathname: string) => string;
+  ignoreRepeatedHitsOnSave?: boolean;
   canSave?: (visit: VisitInput) => boolean | Promise<boolean>;
   enrichVisit?: (
     visit: VisitInput,
