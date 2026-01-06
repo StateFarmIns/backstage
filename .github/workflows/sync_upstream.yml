@@ -1,0 +1,109 @@
+name: Sync Fork with Upstream
+on:
+  workflow_dispatch:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Configure Git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/backstage/backstage.git || true
+          git remote -v
+
+      - name: Fetch upstream changes
+        run: |
+          # Fetch branches first
+          git fetch upstream
+          # Fetch tags with --force to update existing tags that may have conflicts
+          git fetch upstream --tags --force
+
+      - name: Sync master branch
+        id: sync_branch
+        run: |
+          git checkout master
+          
+          # Try fast-forward merge first
+          if git merge upstream/master --ff-only 2>/dev/null; then
+            echo "sync_type=fast-forward" >> $GITHUB_OUTPUT
+            echo "Fast-forward merge successful"
+          else
+            # Check if we're already up to date
+            if git merge-base --is-ancestor upstream/master HEAD; then
+              echo "sync_type=up-to-date" >> $GITHUB_OUTPUT
+              echo "Already up to date with upstream"
+            # Check if upstream is ahead (we can merge without conflicts)
+            elif git merge-base --is-ancestor HEAD upstream/master; then
+              echo "sync_type=reset" >> $GITHUB_OUTPUT
+              echo "Local branch is behind, resetting to upstream..."
+              git reset --hard upstream/master
+            else
+              # Branches have diverged - attempt merge
+              echo "sync_type=merge" >> $GITHUB_OUTPUT
+              echo "Branches have diverged, attempting merge..."
+              if git merge upstream/master --no-edit; then
+                echo "Merge successful"
+              else
+                echo "::error::Merge conflict detected. Manual intervention required."
+                git merge --abort
+                exit 1
+              fi
+            fi
+          fi
+
+      - name: Push changes
+        continue-on-error: true
+        id: push_tags
+        run: |
+          git push origin master
+          git push origin --tags --force 2>&1 | tee push_output.txt || true
+
+      - name: Report tag sync status
+        run: |
+          SYNC_TYPE="${{ steps.sync_branch.outputs.sync_type }}"
+          
+          if grep -q "remote rejected" push_output.txt 2>/dev/null; then
+            echo "::warning::Some tags could not be synced due to permissions (workflow files in tags require 'workflows' permission)"
+            echo "### :warning: Partial sync completed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Synced branches:** master ✅ (${SYNC_TYPE})" >> $GITHUB_STEP_SUMMARY
+            echo "**Tags synced:** Partial (some tags skipped due to workflow file permissions)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Tags containing workflow files require a Personal Access Token with 'workflows' scope." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### :white_check_mark: Fork sync completed successfully" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Synced branches:** master ✅ (${SYNC_TYPE})" >> $GITHUB_STEP_SUMMARY
+            echo "**Tags synced:** All upstream tags ✅" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          rm -f push_output.txt
+
+      - name: Create failure summary
+        if: failure()
+        run: |
+          echo "### :x: Fork sync failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Manual intervention may be required to resolve conflicts." >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
