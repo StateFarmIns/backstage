@@ -53,6 +53,34 @@ const _default: OverridableFrontendPlugin<
         params: ApiFactory<TApi, TImpl, TDeps>,
       ) => ExtensionBlueprintParams<AnyApiFactory>;
     }>;
+    'api:techdocs/addons': OverridableExtensionDefinition<{
+      config: {};
+      configInput: {};
+      output: ExtensionDataRef<AnyApiFactory, 'core.api.factory', {}>;
+      inputs: {
+        addons: ExtensionInput<
+          ConfigurableExtensionDataRef<
+            TechDocsAddonOptions,
+            'techdocs.addon',
+            {}
+          >,
+          {
+            singleton: false;
+            optional: false;
+            internal: false;
+          }
+        >;
+      };
+      kind: 'api';
+      name: 'addons';
+      params: <
+        TApi,
+        TImpl extends TApi,
+        TDeps extends { [name in string]: unknown },
+      >(
+        params: ApiFactory<TApi, TImpl, TDeps>,
+      ) => ExtensionBlueprintParams<AnyApiFactory>;
+    }>;
     'api:techdocs/storage': OverridableExtensionDefinition<{
       kind: 'api';
       name: 'storage';
@@ -84,6 +112,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: boolean;
             optional: boolean;
+            internal?: boolean;
           }
         >;
       };
@@ -146,6 +175,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: false;
             optional: false;
+            internal: false;
           }
         >;
         emptyState: ExtensionInput<
@@ -159,6 +189,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: true;
             optional: true;
+            internal: false;
           }
         >;
       };
@@ -290,6 +321,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: false;
             optional: false;
+            internal: false;
           }
         >;
       };
@@ -308,7 +340,6 @@ const _default: OverridableFrontendPlugin<
         lineClamp: number;
         asLink: boolean;
         asListItem: boolean;
-      } & {
         noTrack: boolean;
       };
       configInput: {
@@ -316,7 +347,6 @@ const _default: OverridableFrontendPlugin<
         lineClamp?: number | undefined;
         asListItem?: boolean | undefined;
         asLink?: boolean | undefined;
-      } & {
         noTrack?: boolean | undefined;
       };
       output: ExtensionDataRef<
@@ -328,15 +358,7 @@ const _default: OverridableFrontendPlugin<
         'search.search-result-list-item.item',
         {}
       >;
-      inputs: {
-        [x: string]: ExtensionInput<
-          ExtensionDataRef,
-          {
-            singleton: boolean;
-            optional: boolean;
-          }
-        >;
-      };
+      inputs: {};
       kind: 'search-result-list-item';
       name: undefined;
       params: SearchResultListItemBlueprintParams;
@@ -352,7 +374,6 @@ export const techDocsSearchResultListItemExtension: OverridableExtensionDefiniti
     lineClamp: number;
     asLink: boolean;
     asListItem: boolean;
-  } & {
     noTrack: boolean;
   };
   configInput: {
@@ -360,7 +381,6 @@ export const techDocsSearchResultListItemExtension: OverridableExtensionDefiniti
     lineClamp?: number | undefined;
     asListItem?: boolean | undefined;
     asLink?: boolean | undefined;
-  } & {
     noTrack?: boolean | undefined;
   };
   output: ExtensionDataRef<
@@ -372,15 +392,7 @@ export const techDocsSearchResultListItemExtension: OverridableExtensionDefiniti
     'search.search-result-list-item.item',
     {}
   >;
-  inputs: {
-    [x: string]: ExtensionInput<
-      ExtensionDataRef,
-      {
-        singleton: boolean;
-        optional: boolean;
-      }
-    >;
-  };
+  inputs: {};
   kind: 'search-result-list-item';
   name: undefined;
   params: SearchResultListItemBlueprintParams;

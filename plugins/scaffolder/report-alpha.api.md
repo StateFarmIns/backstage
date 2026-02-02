@@ -17,7 +17,6 @@ import { ExtensionInput } from '@backstage/frontend-plugin-api';
 import { ExternalRouteRef } from '@backstage/core-plugin-api';
 import { FieldExtensionOptions } from '@backstage/plugin-scaffolder-react';
 import { FormField } from '@backstage/plugin-scaffolder-react/alpha';
-import { formFieldsApiRef } from '@backstage/plugin-scaffolder-react/alpha';
 import type { FormProps as FormProps_2 } from '@rjsf/core';
 import { FormProps as FormProps_3 } from '@backstage/plugin-scaffolder-react';
 import { IconComponent } from '@backstage/frontend-plugin-api';
@@ -31,11 +30,10 @@ import { ReviewStepProps } from '@backstage/plugin-scaffolder-react';
 import { RouteRef } from '@backstage/core-plugin-api';
 import { RouteRef as RouteRef_2 } from '@backstage/frontend-plugin-api';
 import { ScaffolderFormDecorator } from '@backstage/plugin-scaffolder-react/alpha';
-import { ScaffolderFormFieldsApi } from '@backstage/plugin-scaffolder-react/alpha';
 import { SubRouteRef } from '@backstage/core-plugin-api';
 import { TemplateEntityV1beta3 } from '@backstage/plugin-scaffolder-common';
 import { TemplateGroupFilter } from '@backstage/plugin-scaffolder-react';
-import { TranslationRef } from '@backstage/core-plugin-api/alpha';
+import { TranslationRef } from '@backstage/frontend-plugin-api';
 
 // @alpha (undocumented)
 const _default: OverridableFrontendPlugin<
@@ -91,6 +89,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: false;
             optional: false;
+            internal: false;
           }
         >;
       };
@@ -118,6 +117,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: false;
             optional: false;
+            internal: false;
           }
         >;
       };
@@ -218,6 +218,7 @@ const _default: OverridableFrontendPlugin<
           {
             singleton: false;
             optional: false;
+            internal: false;
           }
         >;
       };
@@ -350,6 +351,21 @@ const _default: OverridableFrontendPlugin<
         field: () => Promise<FormField>;
       };
     }>;
+    'scaffolder-form-field:scaffolder/repo-owner-picker': OverridableExtensionDefinition<{
+      kind: 'scaffolder-form-field';
+      name: 'repo-owner-picker';
+      config: {};
+      configInput: {};
+      output: ExtensionDataRef<
+        () => Promise<FormField>,
+        'scaffolder.form-field-loader',
+        {}
+      >;
+      inputs: {};
+      params: {
+        field: () => Promise<FormField>;
+      };
+    }>;
     'scaffolder-form-field:scaffolder/repo-url-picker': OverridableExtensionDefinition<{
       kind: 'scaffolder-form-field';
       name: 'repo-url-picker';
@@ -396,6 +412,7 @@ export const formDecoratorsApi: OverridableExtensionDefinition<{
       {
         singleton: false;
         optional: false;
+        internal: false;
       }
     >;
   };
@@ -412,8 +429,6 @@ export const formDecoratorsApi: OverridableExtensionDefinition<{
 
 // @alpha (undocumented)
 export const formDecoratorsApiRef: ApiRef<ScaffolderFormDecoratorsApi>;
-
-export { formFieldsApiRef };
 
 // @alpha @deprecated
 export type FormProps = Pick<
@@ -433,8 +448,6 @@ export interface ScaffolderFormDecoratorsApi {
   // (undocumented)
   getFormDecorators(): Promise<ScaffolderFormDecorator[]>;
 }
-
-export { ScaffolderFormFieldsApi };
 
 // @public (undocumented)
 export type ScaffolderTemplateEditorClassKey =
@@ -499,6 +512,8 @@ export const scaffolderTranslationRef: TranslationRef<
     readonly 'fields.repoUrlPicker.repository.title': 'Repositories Available';
     readonly 'fields.repoUrlPicker.repository.description': 'The name of the repository';
     readonly 'fields.repoUrlPicker.repository.inputTitle': 'Repository';
+    readonly 'fields.repoOwnerPicker.title': 'Owner';
+    readonly 'fields.repoOwnerPicker.description': 'The owner of the repository';
     readonly 'aboutCard.launchTemplate': 'Launch Template';
     readonly 'actionsPage.content.emptyState.title': 'No information to display';
     readonly 'actionsPage.content.emptyState.description': 'There are no actions installed or there was an issue communicating with backend.';

@@ -1,5 +1,32 @@
 # @backstage/cli-node
 
+## 0.2.17-next.0
+
+### Patch Changes
+
+- 7455dae: Use node prefix on native imports
+- 69d880e: Bump to latest zod to ensure it has the latest features
+- Updated dependencies
+  - @backstage/cli-common@0.1.18-next.0
+  - @backstage/errors@1.2.7
+  - @backstage/types@1.2.2
+
+## 0.2.16
+
+### Patch Changes
+
+- 4e8c726: Updated to use new utilities from `@backstage/cli-common`.
+- Updated dependencies
+  - @backstage/cli-common@0.1.16
+
+## 0.2.16-next.1
+
+### Patch Changes
+
+- 4e8c726: Updated to use new utilities from `@backstage/cli-common`.
+- Updated dependencies
+  - @backstage/cli-common@0.1.16-next.1
+
 ## 0.2.16-next.0
 
 ### Patch Changes

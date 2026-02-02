@@ -1,5 +1,29 @@
 # @backstage/test-utils
 
+## 1.7.15-next.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/core-plugin-api@1.12.2-next.0
+  - @backstage/plugin-permission-common@0.9.5-next.0
+  - @backstage/core-app-api@1.19.4-next.0
+  - @backstage/config@1.3.6
+  - @backstage/theme@0.7.1
+  - @backstage/types@1.2.2
+  - @backstage/plugin-permission-react@0.4.40-next.0
+
+## 1.7.14
+
+### Patch Changes
+
+- 97cd16f: Internal update of translation imports.
+- Updated dependencies
+  - @backstage/core-app-api@1.19.3
+  - @backstage/core-plugin-api@1.12.1
+  - @backstage/theme@0.7.1
+  - @backstage/plugin-permission-react@0.4.39
+
 ## 1.7.14-next.0
 
 ### Patch Changes

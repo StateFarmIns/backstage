@@ -211,6 +211,8 @@ to get the existing session, which is exactly what the `ProxiedSignInPage` does.
 thing you need to do to configure the `ProxiedSignInPage` is to pass the ID of the provider like this:
 
 ```tsx title="packages/app/src/App.tsx"
+import { ProxiedSignInPage } from '@backstage/core-components';
+
 const app = createApp({
   components: {
     SignInPage: props => <ProxiedSignInPage {...props} provider="awsalb" />,
@@ -340,7 +342,7 @@ The method with which frontend plugins request access to third-party services is
 through [Utility APIs](../api/utility-apis.md) for each service provider. These
 are all suffixed with `*AuthApiRef`, for example `githubAuthApiRef`. For a
 full list of providers, see the
-[@backstage/core-plugin-api](../reference/core-plugin-api.md#variables) reference.
+[@backstage/core-plugin-api](https://backstage.io/api/stable/modules/_backstage_core-plugin-api.index.html#alertapiref) reference.
 
 ## Custom Authentication Provider
 
@@ -457,6 +459,42 @@ import { providers } from '@backstage/plugin-auth-backend';
 providerFactories: {
   ghe: providers.github.create(),
 },
+```
+
+In the new backend system you can leverage the `authProvidersExtensionPoint` for this:
+
+```ts
+// your-auth-plugin-module.ts
+export const gheAuth = createBackendModule({
+  // This ID must be exactly "auth" because that's the plugin it targets
+  pluginId: 'auth',
+  // This ID must be unique, but can be anything
+  moduleId: 'ghe-auth-provider',
+  register(reg) {
+    reg.registerInit({
+      deps: {
+        providers: authProvidersExtensionPoint,
+        logger: coreServices.logger,
+      },
+      async init({ providers, logger }) {
+        providers.registerProvider({
+          // This ID must match the actual provider config, e.g. addressing
+          // auth.providers.ghe means that this must be "ghe".
+          providerId: 'ghe',
+          factory: createOAuthProviderFactory({
+            authenticator: githubAuthenticator,
+            signInResolverFactories: {
+              ...commonSignInResolvers,
+            },
+          }),
+        });
+      },
+    });
+  },
+});
+
+// backend index.ts
+backend.add(gheAuth);
 ```
 
 ## Configuring token issuers

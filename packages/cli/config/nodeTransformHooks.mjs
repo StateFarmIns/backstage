@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import { dirname, extname, resolve as resolvePath } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname, extname, resolve as resolvePath } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { transformFile } from '@swc/core';
 import { isBuiltin } from 'node:module';
-import { readFile } from 'fs/promises';
-import { existsSync } from 'fs';
+import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
 // @ts-check
 
@@ -277,7 +277,7 @@ export async function load(url, context, nextLoad) {
       exportInteropAnnotation: true,
     },
     jsc: {
-      target: 'es2022',
+      target: 'es2023',
       parser: {
         syntax: 'typescript',
       },

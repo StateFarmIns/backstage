@@ -20,19 +20,19 @@ import { TableDefinition } from '../definition';
 import styles from '../Table.module.css';
 import clsx from 'clsx';
 import { ColumnProps } from '../types';
-import { RiArrowUpLine, RiArrowDownLine } from '@remixicon/react';
+import { RiArrowUpLine } from '@remixicon/react';
 
 /** @public */
 export const Column = (props: ColumnProps) => {
   const { classNames, cleanedProps } = useStyles(TableDefinition, props);
-  const { children, ...rest } = cleanedProps;
+  const { className, children, ...rest } = cleanedProps;
 
   return (
     <ReactAriaColumn
-      className={clsx(classNames.head, styles[classNames.head])}
+      className={clsx(classNames.head, styles[classNames.head], className)}
       {...rest}
     >
-      {({ allowsSorting, sortDirection }) => (
+      {({ allowsSorting }) => (
         <div
           className={clsx(
             classNames.headContent,
@@ -48,11 +48,7 @@ export const Column = (props: ColumnProps) => {
                 styles[classNames.headSortButton],
               )}
             >
-              {sortDirection === 'descending' ? (
-                <RiArrowDownLine size={16} />
-              ) : (
-                <RiArrowUpLine size={16} />
-              )}
+              <RiArrowUpLine size={16} />
             </span>
           )}
         </div>

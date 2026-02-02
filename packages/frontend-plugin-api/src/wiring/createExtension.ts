@@ -26,7 +26,7 @@ import {
 } from '@internal/frontend';
 import { ExtensionDataRef, ExtensionDataValue } from './createExtensionDataRef';
 import { ExtensionInput } from './createExtensionInput';
-import { z } from 'zod';
+import type { z } from 'zod';
 import { createSchemaFromZod } from '../schema/createSchemaFromZod';
 import { OpaqueExtensionDefinition } from '@internal/frontend';
 import { ExtensionDataContainer } from './types';
@@ -152,7 +152,7 @@ export type VerifyExtensionAttachTo<
  * const page = ParentBlueprint.make({ ... });
  * const child = ChildBlueprint.make({ attachTo: page.inputs.children });
  *
- * // Attach to multiple parents at once
+ * // Attach to multiple parents at once (deprecated - use Utility APIs instead)
  * [
  *   { id: 'page/home', input: 'widgets' },
  *   { relative: { kind: 'page' }, input: 'widgets' },
@@ -167,6 +167,9 @@ export type ExtensionDefinitionAttachTo<
   | { id: string; input: string; relative?: never }
   | { relative: { kind?: string; name?: string }; input: string; id?: never }
   | ExtensionInput<UParentInputs>
+  /**
+   * @deprecated Multiple attachment points are deprecated and will be removed in a future release. Use a Utility API instead to share functionality across multiple locations. See https://backstage.io/docs/frontend-system/architecture/27-sharing-extensions for migration guidance.
+   */
   | Array<
       | { id: string; input: string; relative?: never }
       | {

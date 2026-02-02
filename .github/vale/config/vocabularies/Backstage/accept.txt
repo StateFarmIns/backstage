@@ -99,6 +99,7 @@ dataflow
 dataloader
 dayjs
 debounce
+debounced
 debounces
 debuggability
 declaratively
@@ -268,6 +269,7 @@ maintainer's
 maintainership
 makefile
 Matomo
+matchers
 md
 memcache
 memoization
@@ -343,6 +345,7 @@ parallelization
 param
 params
 parseable
+passwordless
 Patrik
 pattison
 Peloton
@@ -522,8 +525,10 @@ transpile
 transpiled
 transpiler
 transpilers
+trixie
 truthy
 tsconfig
+Turbopack
 TSDoc
 typeahead
 ui
@@ -536,6 +541,7 @@ unmount
 unregister
 unregistering
 unregistration
+unreviewed
 unstarred
 untemplated
 untracked
@@ -576,3 +582,4 @@ zoomable
 zsh
 resizable
 enums
+LLMs
