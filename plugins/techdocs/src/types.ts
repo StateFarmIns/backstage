@@ -34,3 +34,11 @@ export type TechDocsReaderPageRenderFunction = (options: {
    */
   onReady?: () => void;
 }) => JSX.Element;
+
+export type SimpleIframeConfig = string[];
+export type DetailedIframeConfig = Array<{
+  src: string;
+  allowedAttributes?: Array<string>;
+}>;
+
+export type IframeConfig = SimpleIframeConfig | DetailedIframeConfig;

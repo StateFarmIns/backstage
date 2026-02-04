@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { Config } from '@backstage/config';
-import { SimpleIframeConfig } from '../../../../config';
+import { SimpleIframeConfig } from '../../../types';
 
 export function isSimpleIframeConfig(
   value: unknown[],

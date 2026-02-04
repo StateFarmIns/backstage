@@ -110,8 +110,9 @@ export const useSanitizerTransformer = (): Transformer => {
               currentIframeAllowedAttributes,
             );
 
-            DOMPurify.addHook('uponSanitizeElement', (currNode, data) => {
+            DOMPurify.addHook('uponSanitizeElement', (inCurrNode, data) => {
               if (data.tagName === 'iframe') {
+                const currNode = inCurrNode as Element;
                 if (isHost(currNode, host)) {
                   for (const attr of currNode.attributes) {
                     if (
@@ -179,7 +180,12 @@ export const useSanitizerTransformer = (): Transformer => {
       return DOMPurify.sanitize(dom.outerHTML, {
         ADD_TAGS: tags,
         FORBID_TAGS: ['style'],
-        ADD_ATTR: ['http-equiv', 'content', 'dominant-baseline', ...allIframeAllowedAttributes],
+        ADD_ATTR: [
+          'http-equiv',
+          'content',
+          'dominant-baseline',
+          ...allIframeAllowedAttributes,
+        ],
         WHOLE_DOCUMENT: true,
         RETURN_DOM: true,
         ALLOWED_URI_REGEXP: allowedURIRegExp,

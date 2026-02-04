@@ -14,14 +14,6 @@
  * limitations under the License.
  */
 
-export type SimpleIframeConfig = string[];
-export type DetailedIframeConfig = Array<{
-  src: string;
-  allowedAttributes?: Array<string>;
-}>;
-
-export type IframeConfig = SimpleIframeConfig | DetailedIframeConfig;
-
 export interface Config {
   /**
    * Configuration options for the techdocs plugin
@@ -51,7 +43,22 @@ export interface Config {
        *  this will allow all iframes with the host `example.com` in the src attribute and it will keep the allowedfullscreen attribute from being removed
        * @visibility frontend
        */
-      allowedIframeHosts?: IframeConfig;
+      allowedIframeHosts?:
+        | string[]
+        | Array<{
+            /**
+             * Allows iframe tag only for listed host
+             * Example: "example.com"
+             * @visibility frontend
+             */
+            src: string;
+            /**
+             * Allows listed attributes on the iframe tag for the specified host
+             * Example: ['allowedfullscreen']
+             * @visibility frontend
+             */
+            allowedAttributes?: Array<string>;
+          }>;
       /**
        * Allows listed custom element tag name regex
        * Example:
