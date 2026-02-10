@@ -47,7 +47,7 @@ export interface UnifiedThemeProviderProps {
  * This call needs to be in the same module as the `UnifiedThemeProvider` to ensure that it doesn't get removed by tree shaking
  */
 ClassNameGenerator.configure(componentName => {
-  return `v5-${componentName}`;
+  return `v5-${(componentName ?? '').replace(/^(v5-)+/, '')}`;
 });
 
 // Background at https://mui.com/x/migration/migration-data-grid-v4/#using-mui-core-v4-with-v5
