@@ -50,7 +50,7 @@
   "dependencies": {
     "@backstage/errors": "workspace:^",
     "@backstage/types": "workspace:^",
-    "ajv": "^8.10.0",
+    "ajv": "^8.18.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
