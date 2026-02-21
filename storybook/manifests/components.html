@@ -576,7 +576,7 @@
 <header>
   <div class="wrap">
     <h1>Manifest Debugger</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/41 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">31/41 infos</a><span class="filter-pill ok" aria-disabled="true">367 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/42 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">31/42 infos</a><span class="filter-pill ok" aria-disabled="true">374 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -596,9 +596,9 @@
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Accordion</h2>
       <div class="badges">
-        <label for="c-0-backstage-ui-accordion-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-0-backstage-ui-accordion-props" class="badge ok as-toggle">3 prop types</label>
         <label for="c-0-backstage-ui-accordion-info" class="badge info as-toggle">1 info</label>
-        <label for="c-0-backstage-ui-accordion-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-0-backstage-ui-accordion-stories" class="badge ok as-toggle">7 stories</label>
         
       </div>
     </div>
@@ -630,11 +630,15 @@
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">1 prop type</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/Accordion/Accordion.tsx::Accordion</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>className?: string</code></pre>
+            <pre><code>bg?: ContainerBg | &#39;neutral-auto&#39;
+
+children?: ReactNode
+
+className?: string</code></pre>
           </div>
         </div>
     
@@ -646,7 +650,16 @@
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Accordion, AccordionGroup, AccordionPanel, AccordionTrigger, Box, Text } from "@backstage/ui";</code></pre>
+                <pre><code>import {
+    Accordion,
+    AccordionGroup,
+    AccordionPanel,
+    AccordionTrigger,
+    Box,
+    Button,
+    Flex,
+    Text,
+} from "@backstage/ui";</code></pre>
               </div>
           
           
@@ -812,6 +825,81 @@
   &lt;/AccordionGroup&gt;
 );</code></pre>
             </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">AutoBg</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const AutoBg = () =&gt; (
+  &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
+    &lt;div style={{ maxWidth: &#39;600px&#39; }}&gt;
+      Accordions automatically detect their parent bg context and increment
+      the neutral level by 1. No prop is needed on the accordion -- it&#39;s fully
+      automatic.
+    &lt;/div&gt;
+    &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
+      &lt;Text&gt;Default (no container)&lt;/Text&gt;
+      &lt;Accordion defaultExpanded&gt;
+        &lt;AccordionTrigger title=&quot;Toggle Panel&quot; /&gt;
+        &lt;AccordionPanel&gt;
+          &lt;Content /&gt;
+          &lt;Flex mt=&quot;3&quot; gap=&quot;2&quot;&gt;
+            &lt;Button&gt;Action&lt;/Button&gt;
+            &lt;Button variant=&quot;secondary&quot;&gt;Cancel&lt;/Button&gt;
+          &lt;/Flex&gt;
+        &lt;/AccordionPanel&gt;
+      &lt;/Accordion&gt;
+    &lt;/Flex&gt;
+    &lt;Box bg=&quot;neutral-1&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 1 container&lt;/Text&gt;
+      &lt;Flex mt=&quot;2&quot;&gt;
+        &lt;Accordion defaultExpanded&gt;
+          &lt;AccordionTrigger title=&quot;Auto (neutral-2)&quot; /&gt;
+          &lt;AccordionPanel&gt;
+            &lt;Content /&gt;
+            &lt;Flex mt=&quot;3&quot; gap=&quot;2&quot;&gt;
+              &lt;Button&gt;Action&lt;/Button&gt;
+              &lt;Button variant=&quot;secondary&quot;&gt;Cancel&lt;/Button&gt;
+            &lt;/Flex&gt;
+          &lt;/AccordionPanel&gt;
+        &lt;/Accordion&gt;
+      &lt;/Flex&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-2&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 2 container&lt;/Text&gt;
+      &lt;Flex mt=&quot;2&quot;&gt;
+        &lt;Accordion defaultExpanded&gt;
+          &lt;AccordionTrigger title=&quot;Auto (neutral-3)&quot; /&gt;
+          &lt;AccordionPanel&gt;
+            &lt;Content /&gt;
+            &lt;Flex mt=&quot;3&quot; gap=&quot;2&quot;&gt;
+              &lt;Button&gt;Action&lt;/Button&gt;
+              &lt;Button variant=&quot;secondary&quot;&gt;Cancel&lt;/Button&gt;
+            &lt;/Flex&gt;
+          &lt;/AccordionPanel&gt;
+        &lt;/Accordion&gt;
+      &lt;/Flex&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-3&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 3 container&lt;/Text&gt;
+      &lt;Flex mt=&quot;2&quot;&gt;
+        &lt;Accordion defaultExpanded&gt;
+          &lt;AccordionTrigger title=&quot;Auto (neutral-3)&quot; /&gt;
+          &lt;AccordionPanel&gt;
+            &lt;Content /&gt;
+            &lt;Flex mt=&quot;3&quot; gap=&quot;2&quot;&gt;
+              &lt;Button&gt;Action&lt;/Button&gt;
+              &lt;Button variant=&quot;secondary&quot;&gt;Cancel&lt;/Button&gt;
+            &lt;/Flex&gt;
+          &lt;/AccordionPanel&gt;
+        &lt;/Accordion&gt;
+      &lt;/Flex&gt;
+    &lt;/Box&gt;
+  &lt;/Flex&gt;
+);</code></pre>
+            </div>
         </div>
     
   </div>
@@ -828,7 +916,7 @@
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Alert</h2>
       <div class="badges">
-        <label for="c-1-backstage-ui-alert-props" class="badge ok as-toggle">16 prop types</label>
+        <label for="c-1-backstage-ui-alert-props" class="badge ok as-toggle">15 prop types</label>
         
         <label for="c-1-backstage-ui-alert-stories" class="badge ok as-toggle">13 stories</label>
         
@@ -855,7 +943,7 @@
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">16 prop types</span>
+              <span class="badge ok">15 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/Alert/Alert.tsx::Alert</code></pre>
             <pre><code>Props:</code></pre>
@@ -886,8 +974,6 @@ my?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 status?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 style?: CSSProperties
-
-surface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 title?: ReactNode</code></pre>
           </div>
@@ -1181,54 +1267,42 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">OnDifferentSurfaces</span>
+                <span class="ex-name">OnDifferentBackgrounds</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const OnDifferentSurfaces = () =&gt; (
+              <pre><code>const OnDifferentBackgrounds = () =&gt; (
   &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;Default Surface&lt;/Text&gt;
+      &lt;Text&gt;Default&lt;/Text&gt;
       &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; p=&quot;4&quot;&gt;
-        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on default surface&quot; /&gt;
-        &lt;Alert
-          status=&quot;success&quot;
-          icon={true}
-          title=&quot;Alert on default surface&quot;
-        /&gt;
+        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on default bg&quot; /&gt;
+        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on default bg&quot; /&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
 
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 0&lt;/Text&gt;
-      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; surface=&quot;0&quot; p=&quot;4&quot;&gt;
-        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on surface 0&quot; /&gt;
-        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on surface 0&quot; /&gt;
+      &lt;Text&gt;On Neutral 1&lt;/Text&gt;
+      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; bg=&quot;neutral-1&quot; p=&quot;4&quot;&gt;
+        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on neutral-1&quot; /&gt;
+        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on neutral-1&quot; /&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
 
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 1&lt;/Text&gt;
-      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; surface=&quot;1&quot; p=&quot;4&quot;&gt;
-        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on surface 1&quot; /&gt;
-        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on surface 1&quot; /&gt;
+      &lt;Text&gt;On Neutral 2&lt;/Text&gt;
+      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; bg=&quot;neutral-2&quot; p=&quot;4&quot;&gt;
+        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on neutral-2&quot; /&gt;
+        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on neutral-2&quot; /&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
 
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 2&lt;/Text&gt;
-      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; surface=&quot;2&quot; p=&quot;4&quot;&gt;
-        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on surface 2&quot; /&gt;
-        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on surface 2&quot; /&gt;
-      &lt;/Flex&gt;
-    &lt;/Flex&gt;
-
-    &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 3&lt;/Text&gt;
-      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; surface=&quot;3&quot; p=&quot;4&quot;&gt;
-        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on surface 3&quot; /&gt;
-        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on surface 3&quot; /&gt;
+      &lt;Text&gt;On Neutral 3&lt;/Text&gt;
+      &lt;Flex direction=&quot;column&quot; gap=&quot;2&quot; bg=&quot;neutral-3&quot; p=&quot;4&quot;&gt;
+        &lt;Alert status=&quot;info&quot; icon={true} title=&quot;Alert on neutral-3&quot; /&gt;
+        &lt;Alert status=&quot;success&quot; icon={true} title=&quot;Alert on neutral-3&quot; /&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
   &lt;/Flex&gt;
@@ -1259,7 +1333,7 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
               
               
               <pre><code>const WithUtilityProps = () =&gt; (
-  &lt;Box surface=&quot;1&quot; py=&quot;4&quot;&gt;
+  &lt;Box bg=&quot;neutral-1&quot; py=&quot;4&quot;&gt;
     &lt;Alert
       status=&quot;success&quot;
       icon={true}
@@ -1459,7 +1533,7 @@ src: string</code></pre>
       <div class="badges">
         <label for="c-3-backstage-ui-box-props" class="badge ok as-toggle">27 prop types</label>
         <label for="c-3-backstage-ui-box-info" class="badge info as-toggle">1 info</label>
-        <label for="c-3-backstage-ui-box-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-3-backstage-ui-box-stories" class="badge ok as-toggle">12 stories</label>
         
       </div>
     </div>
@@ -1496,6 +1570,8 @@ src: string</code></pre>
             <pre><code>Component: packages/ui/src/components/Box/Box.tsx::Box</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>as?: JSX.IntrinsicElements
+
+bg?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 children?: ReactNode
 
@@ -1544,8 +1620,6 @@ px?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 py?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 style?: CSSProperties
-
-surface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 width?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
           </div>
@@ -1859,82 +1933,45 @@ width?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Surfaces</span>
+                <span class="ex-name">BackgroundColors</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Surfaces = () =&gt; &lt;Flex align=&quot;center&quot; style={{ flexWrap: &#39;wrap&#39; }}&gt;
+              <pre><code>const BackgroundColors = () =&gt; &lt;Flex align=&quot;center&quot; style={{ flexWrap: &#39;wrap&#39; }}&gt;
     &lt;Box px=&quot;6&quot; py=&quot;4&quot;&gt;Default&lt;/Box&gt;
-    &lt;Box surface=&quot;0&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 0
+    &lt;Box bg=&quot;neutral-1&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 1
               &lt;/Box&gt;
-    &lt;Box surface=&quot;1&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 1
+    &lt;Box bg=&quot;neutral-2&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 2
               &lt;/Box&gt;
-    &lt;Box surface=&quot;2&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 2
+    &lt;Box bg=&quot;neutral-3&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 3
               &lt;/Box&gt;
-    &lt;Box surface=&quot;3&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 3
+    &lt;Box bg={{ initial: &#39;neutral-1&#39;, sm: &#39;neutral-2&#39; }} px=&quot;6&quot; py=&quot;4&quot;&gt;Responsive Neutral
               &lt;/Box&gt;
-    &lt;Box surface={{ initial: &#39;0&#39;, sm: &#39;1&#39; }} px=&quot;6&quot; py=&quot;4&quot;&gt;Responsive Surface
+    &lt;Box bg=&quot;danger&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Danger
               &lt;/Box&gt;
-    &lt;Box surface=&quot;danger&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Danger
+    &lt;Box bg=&quot;warning&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Warning
               &lt;/Box&gt;
-    &lt;Box surface=&quot;warning&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Warning
-              &lt;/Box&gt;
-    &lt;Box surface=&quot;success&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Success
+    &lt;Box bg=&quot;success&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Success
               &lt;/Box&gt;
 &lt;/Flex&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SurfacesNested</span>
+                <span class="ex-name">NestedNeutralColors</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SurfacesNested = () =&gt; &lt;Flex direction=&quot;column&quot;&gt;
-    &lt;Box style={{ maxWidth: &#39;600px&#39; }} mb=&quot;4&quot;&gt;In this test, we are nesting boxes and buttons on different surfaces to
-                ensure that the correct surface is applied to each element. If a Button
-                is placed on a surface that doesn&#39;t have the surface prop set, it will
-                inherit the surface from the parent.
-              &lt;/Box&gt;
-    &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;1&quot;&gt;
-        &lt;Button variant=&quot;secondary&quot;&gt;Button&lt;/Button&gt;
-        &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;2&quot; mt=&quot;4&quot;&gt;
-            &lt;Button variant=&quot;secondary&quot;&gt;Button&lt;/Button&gt;
-            &lt;Box px=&quot;6&quot; py=&quot;4&quot; mt=&quot;4&quot;&gt;
-                &lt;Button variant=&quot;secondary&quot;&gt;Button&lt;/Button&gt;
-            &lt;/Box&gt;
+              <pre><code>const NestedNeutralColors = () =&gt; &lt;Box px=&quot;6&quot; py=&quot;4&quot; bg=&quot;neutral-1&quot;&gt;
+    &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-1)&lt;/Button&gt;
+    &lt;Box px=&quot;6&quot; py=&quot;4&quot; bg=&quot;neutral-2&quot; mt=&quot;4&quot;&gt;
+        &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-2)&lt;/Button&gt;
+        &lt;Box px=&quot;6&quot; py=&quot;4&quot; bg=&quot;neutral-3&quot; mt=&quot;4&quot;&gt;
+            &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-3)&lt;/Button&gt;
         &lt;/Box&gt;
     &lt;/Box&gt;
-&lt;/Flex&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SurfacesAutoIncrement</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SurfacesAutoIncrement = () =&gt; &lt;Flex direction=&quot;column&quot;&gt;
-    &lt;Box style={{ maxWidth: &#39;600px&#39; }} mb=&quot;4&quot;&gt;Using surface=&quot;auto&quot; automatically increments from the parent surface
-                level. This makes components more reusable as they don&#39;t need to know
-                their absolute surface level. Notice how each nested Box with
-                surface=&quot;auto&quot; automatically increments: 0 → 1 → 2 → 3 (capped at 3).
-              &lt;/Box&gt;
-    &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;0&quot;&gt;Surface 0 (explicit)
-                &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;auto&quot; mt=&quot;4&quot;&gt;
-            &lt;Box mb=&quot;3&quot;&gt;Surface auto (becomes 1)&lt;/Box&gt;
-            &lt;Button variant=&quot;secondary&quot; onSurface=&quot;auto&quot;&gt;Button auto
-                          &lt;/Button&gt;
-            &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;auto&quot; mt=&quot;4&quot;&gt;Surface auto (becomes 2)
-                            &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;auto&quot; mt=&quot;4&quot;&gt;Surface auto (becomes 3)
-                                  &lt;Box px=&quot;6&quot; py=&quot;4&quot; surface=&quot;auto&quot; mt=&quot;4&quot;&gt;Surface auto (stays 3 - capped)
-                                      &lt;/Box&gt;
-                &lt;/Box&gt;
-            &lt;/Box&gt;
-        &lt;/Box&gt;
-    &lt;/Box&gt;
-&lt;/Flex&gt;;</code></pre>
+&lt;/Box&gt;;</code></pre>
             </div>
         </div>
     
@@ -1952,7 +1989,7 @@ width?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Button</h2>
       <div class="badges">
-        <label for="c-4-backstage-ui-button-props" class="badge ok as-toggle">10 prop types</label>
+        <label for="c-4-backstage-ui-button-props" class="badge ok as-toggle">9 prop types</label>
         
         <label for="c-4-backstage-ui-button-stories" class="badge ok as-toggle">11 stories</label>
         
@@ -1979,7 +2016,7 @@ width?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">10 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/Button/Button.tsx::Button</code></pre>
             <pre><code>Props:</code></pre>
@@ -1994,8 +2031,6 @@ iconEnd?: ReactElement
 iconStart?: ReactElement
 
 loading?: boolean
-
-onSurface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 size?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
@@ -2060,31 +2095,8 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;Neutral 0&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;0&quot; p=&quot;4&quot;&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
-          Button
-        &lt;/Button&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot;&gt;
-          Button
-        &lt;/Button&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot;&gt;
-          Button
-        &lt;/Button&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot; destructive&gt;
-          Button
-        &lt;/Button&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot; destructive&gt;
-          Button
-        &lt;/Button&gt;
-        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot; destructive&gt;
-          Button
-        &lt;/Button&gt;
-      &lt;/Flex&gt;
-    &lt;/Flex&gt;
-    &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
       &lt;Text&gt;Neutral 1&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;1&quot; p=&quot;4&quot;&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-1&quot; p=&quot;4&quot;&gt;
         &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
           Button
         &lt;/Button&gt;
@@ -2107,63 +2119,49 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
       &lt;Text&gt;Neutral 2&lt;/Text&gt;
-      &lt;Box surface=&quot;1&quot;&gt;
-        &lt;Flex align=&quot;center&quot; surface=&quot;2&quot; p=&quot;4&quot;&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
-            Button
-          &lt;/Button&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot;&gt;
-            Button
-          &lt;/Button&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot;&gt;
-            Button
-          &lt;/Button&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot; destructive&gt;
-            Button
-          &lt;/Button&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot; destructive&gt;
-            Button
-          &lt;/Button&gt;
-          &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot; destructive&gt;
-            Button
-          &lt;/Button&gt;
-        &lt;/Flex&gt;
-      &lt;/Box&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-2&quot; p=&quot;4&quot;&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+      &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
       &lt;Text&gt;Neutral 3&lt;/Text&gt;
-      &lt;Box surface=&quot;1&quot;&gt;
-        &lt;Box surface=&quot;2&quot;&gt;
-          &lt;Flex align=&quot;center&quot; surface=&quot;3&quot; p=&quot;4&quot;&gt;
-            &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
-              Button
-            &lt;/Button&gt;
-            &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot;&gt;
-              Button
-            &lt;/Button&gt;
-            &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot;&gt;
-              Button
-            &lt;/Button&gt;
-            &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot; destructive&gt;
-              Button
-            &lt;/Button&gt;
-            &lt;Button
-              iconStart={&lt;RiCloudLine /&gt;}
-              variant=&quot;secondary&quot;
-              destructive
-            &gt;
-              Button
-            &lt;/Button&gt;
-            &lt;Button
-              iconStart={&lt;RiCloudLine /&gt;}
-              variant=&quot;tertiary&quot;
-              destructive
-            &gt;
-              Button
-            &lt;/Button&gt;
-          &lt;/Flex&gt;
-        &lt;/Box&gt;
-      &lt;/Box&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-3&quot; p=&quot;4&quot;&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot;&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;primary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;secondary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+        &lt;Button iconStart={&lt;RiCloudLine /&gt;} variant=&quot;tertiary&quot; destructive&gt;
+          Button
+        &lt;/Button&gt;
+      &lt;/Flex&gt;
     &lt;/Flex&gt;
   &lt;/Flex&gt;
 );</code></pre>
@@ -2229,8 +2227,8 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 1&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;1&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 1&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-1&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
         &lt;Button variant=&quot;primary&quot; destructive&gt;
           Primary
         &lt;/Button&gt;
@@ -2458,53 +2456,37 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">OnSurfaceAuto</span>
+                <span class="ex-name">AutoBg</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const OnSurfaceAuto = () =&gt; (
+              <pre><code>const AutoBg = () =&gt; (
   &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
     &lt;div style={{ maxWidth: &#39;600px&#39; }}&gt;
-      Using onSurface=&quot;auto&quot; on buttons inherits their container&#39;s surface
-      level, making them reusable. This is equivalent to not specifying
-      onSurface. To override, use explicit surface values like onSurface=&quot;0&quot;
-      or onSurface=&quot;2&quot;.
+      Buttons automatically detect their parent bg context and increment the
+      neutral level by 1. No prop is needed on the button -- it&#39;s fully
+      automatic.
     &lt;/div&gt;
-    &lt;Box surface=&quot;0&quot; p=&quot;4&quot;&gt;
-      &lt;Text&gt;Surface 0 container&lt;/Text&gt;
+    &lt;Box bg=&quot;neutral-1&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 1 container&lt;/Text&gt;
       &lt;Flex gap=&quot;2&quot; mt=&quot;2&quot;&gt;
-        &lt;Button variant=&quot;secondary&quot;&gt;Default (inherits 0)&lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;auto&quot;&gt;
-          Auto (inherits 0)
-        &lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;1&quot;&gt;
-          Explicit 1
-        &lt;/Button&gt;
+        &lt;Button variant=&quot;secondary&quot;&gt;Auto (neutral-2)&lt;/Button&gt;
+        &lt;Button variant=&quot;tertiary&quot;&gt;Auto (neutral-2)&lt;/Button&gt;
       &lt;/Flex&gt;
     &lt;/Box&gt;
-    &lt;Box surface=&quot;1&quot; p=&quot;4&quot;&gt;
-      &lt;Text&gt;Surface 1 container&lt;/Text&gt;
+    &lt;Box bg=&quot;neutral-2&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 2 container&lt;/Text&gt;
       &lt;Flex gap=&quot;2&quot; mt=&quot;2&quot;&gt;
-        &lt;Button variant=&quot;secondary&quot;&gt;Default (inherits 1)&lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;auto&quot;&gt;
-          Auto (inherits 1)
-        &lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;2&quot;&gt;
-          Explicit 2
-        &lt;/Button&gt;
+        &lt;Button variant=&quot;secondary&quot;&gt;Auto (neutral-3)&lt;/Button&gt;
+        &lt;Button variant=&quot;tertiary&quot;&gt;Auto (neutral-3)&lt;/Button&gt;
       &lt;/Flex&gt;
     &lt;/Box&gt;
-    &lt;Box surface=&quot;2&quot; p=&quot;4&quot;&gt;
-      &lt;Text&gt;Surface 2 container&lt;/Text&gt;
+    &lt;Box bg=&quot;neutral-3&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;Neutral 3 container&lt;/Text&gt;
       &lt;Flex gap=&quot;2&quot; mt=&quot;2&quot;&gt;
-        &lt;Button variant=&quot;secondary&quot;&gt;Default (inherits 2)&lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;auto&quot;&gt;
-          Auto (inherits 2)
-        &lt;/Button&gt;
-        &lt;Button variant=&quot;secondary&quot; onSurface=&quot;3&quot;&gt;
-          Explicit 3
-        &lt;/Button&gt;
+        &lt;Button variant=&quot;secondary&quot;&gt;Auto (neutral-4)&lt;/Button&gt;
+        &lt;Button variant=&quot;tertiary&quot;&gt;Auto (neutral-4)&lt;/Button&gt;
       &lt;/Flex&gt;
     &lt;/Box&gt;
   &lt;/Flex&gt;
@@ -2526,7 +2508,7 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ButtonIcon</h2>
       <div class="badges">
-        <label for="c-5-backstage-ui-buttonicon-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-5-backstage-ui-buttonicon-props" class="badge ok as-toggle">6 prop types</label>
         <label for="c-5-backstage-ui-buttonicon-info" class="badge info as-toggle">1 info</label>
         <label for="c-5-backstage-ui-buttonicon-stories" class="badge ok as-toggle">7 stories</label>
         
@@ -2560,7 +2542,7 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/ButtonIcon/ButtonIcon.tsx::ButtonIcon</code></pre>
             <pre><code>Props:</code></pre>
@@ -2569,8 +2551,6 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
 icon?: ReactElement
 
 loading?: boolean
-
-onSurface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 size?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
@@ -2778,7 +2758,7 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ButtonLink</h2>
       <div class="badges">
-        <label for="c-6-backstage-ui-buttonlink-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-6-backstage-ui-buttonlink-props" class="badge ok as-toggle">7 prop types</label>
         <label for="c-6-backstage-ui-buttonlink-info" class="badge info as-toggle">1 info</label>
         <label for="c-6-backstage-ui-buttonlink-stories" class="badge ok as-toggle">7 stories</label>
         
@@ -2812,7 +2792,7 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">7 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/ButtonLink/ButtonLink.tsx::ButtonLink</code></pre>
             <pre><code>Props:</code></pre>
@@ -2823,8 +2803,6 @@ className?: string
 iconEnd?: ReactElement
 
 iconStart?: ReactElement
-
-onSurface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 size?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
@@ -2991,9 +2969,9 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Card</h2>
       <div class="badges">
-        <label for="c-7-backstage-ui-card-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-7-backstage-ui-card-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-7-backstage-ui-card-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-7-backstage-ui-card-stories" class="badge ok as-toggle">8 stories</label>
         
       </div>
     </div>
@@ -3018,11 +2996,13 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">1 prop type</span>
+              <span class="badge ok">2 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/Card/Card.tsx::Card</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>children?: React.ReactNode</code></pre>
+            <pre><code>children?: ReactNode
+
+className?: string</code></pre>
           </div>
         </div>
     
@@ -3034,7 +3014,7 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Card, CardBody, CardFooter, CardHeader, Text } from "@backstage/ui";</code></pre>
+                <pre><code>import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Text } from "@backstage/ui";</code></pre>
               </div>
           
           
@@ -3135,6 +3115,133 @@ import { RiArrowRightSLine, RiCloudLine } from "@remixicon/react";</code></pre>
       &lt;Text&gt;Footer&lt;/Text&gt;
     &lt;/CardFooter&gt;
   &lt;/Card&gt;
+);</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Backgrounds</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Backgrounds = () =&gt; &lt;Flex align=&quot;start&quot; style={{ flexWrap: &#39;wrap&#39; }} gap=&quot;4&quot;&gt;
+    &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+        &lt;CardHeader&gt;No parent&lt;/CardHeader&gt;
+        &lt;CardBody&gt;Defaults to neutral-1&lt;/CardBody&gt;
+    &lt;/Card&gt;
+    &lt;Box bg=&quot;neutral-1&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-1&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Auto-increments to neutral-2&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-2&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-2&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Auto-increments to neutral-3&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-3&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-3&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Steps up to neutral-4&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+&lt;/Flex&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">BgNested</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const BgNested = () =&gt; &lt;Flex direction=&quot;column&quot;&gt;
+    &lt;Box style={{ maxWidth: &#39;600px&#39; }} mb=&quot;4&quot;&gt;Nested cards auto-increment their neutral level. Buttons inherit the
+                parent card&#39;s bg via data-on-bg.
+              &lt;/Box&gt;
+    &lt;Card style={{ width: &#39;500px&#39; }}&gt;
+        &lt;CardHeader&gt;Card (visual: neutral-1, provides: neutral-1)&lt;/CardHeader&gt;
+        &lt;CardBody&gt;
+            &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-1)&lt;/Button&gt;
+            &lt;Card style={{ marginTop: &#39;16px&#39; }}&gt;
+                &lt;CardHeader&gt;Card (visual: neutral-2, provides: neutral-2)
+                                &lt;/CardHeader&gt;
+                &lt;CardBody&gt;
+                    &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-2)&lt;/Button&gt;
+                    &lt;Card style={{ marginTop: &#39;16px&#39; }}&gt;
+                        &lt;CardHeader&gt;Card (visual: neutral-4, provides: neutral-3)
+                                            &lt;/CardHeader&gt;
+                        &lt;CardBody&gt;
+                            &lt;Button variant=&quot;secondary&quot;&gt;Button (on neutral-3)&lt;/Button&gt;
+                        &lt;/CardBody&gt;
+                    &lt;/Card&gt;
+                &lt;/CardBody&gt;
+            &lt;/Card&gt;
+        &lt;/CardBody&gt;
+    &lt;/Card&gt;
+&lt;/Flex&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">BgOnProviders</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const BgOnProviders = () =&gt; &lt;Flex align=&quot;start&quot; style={{ flexWrap: &#39;wrap&#39; }} gap=&quot;4&quot;&gt;
+    &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+        &lt;CardHeader&gt;No provider&lt;/CardHeader&gt;
+        &lt;CardBody&gt;Card defaults to neutral-1&lt;/CardBody&gt;
+    &lt;/Card&gt;
+    &lt;Box bg=&quot;neutral-1&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-1&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Card auto-increments to neutral-2&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-2&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-2&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Card auto-increments to neutral-3&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+    &lt;Box bg=&quot;neutral-3&quot; p=&quot;4&quot; style={{ borderRadius: &#39;8px&#39; }}&gt;
+        &lt;Card style={{ width: &#39;200px&#39; }}&gt;
+            &lt;CardHeader&gt;On neutral-3&lt;/CardHeader&gt;
+            &lt;CardBody&gt;Card visually at neutral-4&lt;/CardBody&gt;
+        &lt;/Card&gt;
+    &lt;/Box&gt;
+&lt;/Flex&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">CustomCardWithBox</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const CustomCardWithBox = () =&gt; (
+  &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
+    &lt;Box style={{ maxWidth: &#39;600px&#39; }}&gt;
+      A custom card built with Box. Use Box with an explicit bg prop to create
+      a card-like container that participates in the bg system as a provider.
+    &lt;/Box&gt;
+    &lt;Box
+      bg=&quot;neutral-auto&quot;
+      p=&quot;4&quot;
+      style={{ borderRadius: &#39;8px&#39;, width: &#39;300px&#39; }}
+    &gt;
+      &lt;Button variant=&quot;secondary&quot; style={{ marginTop: &#39;8px&#39; }}&gt;
+        Button (on neutral-1)
+      &lt;/Button&gt;
+    &lt;/Box&gt;
+    &lt;Card style={{ width: &#39;300px&#39; }}&gt;
+      &lt;CardHeader&gt;Header&lt;/CardHeader&gt;
+      &lt;CardBody&gt;Body&lt;/CardBody&gt;
+      &lt;CardFooter&gt;Footer&lt;/CardFooter&gt;
+    &lt;/Card&gt;
+  &lt;/Flex&gt;
 );</code></pre>
             </div>
         </div>
@@ -3317,7 +3424,7 @@ const meta = preview.meta({
 
 export const Default = meta.story({
   render: () =&gt; (
-    &lt;div style={{ backgroundColor: &#39;var(--bui-bg-neutral-0)&#39; }}&gt;
+    &lt;div style={{ backgroundColor: &#39;var(--bui-bg-app)&#39; }}&gt;
       &lt;Box p=&quot;4&quot; style={{ backgroundColor: &#39;var(--bui-bg-neutral-1)&#39; }}&gt;
         &lt;Flex direction=&quot;row&quot; gap=&quot;4&quot; align=&quot;center&quot;&gt;
           &lt;Text&gt;Neutral 1&lt;/Text&gt;
@@ -3476,7 +3583,7 @@ export const Default = meta.story({
               
               
               <pre><code>const Default = () =&gt; (
-  &lt;div style={{ backgroundColor: &#39;var(--bui-bg-neutral-0)&#39; }}&gt;
+  &lt;div style={{ backgroundColor: &#39;var(--bui-bg-app)&#39; }}&gt;
     &lt;Box p=&quot;4&quot; style={{ backgroundColor: &#39;var(--bui-bg-neutral-1)&#39; }}&gt;
       &lt;Flex direction=&quot;row&quot; gap=&quot;4&quot; align=&quot;center&quot;&gt;
         &lt;Text&gt;Neutral 1&lt;/Text&gt;
@@ -5772,6 +5879,8 @@ secondaryLabel?: string | null</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>align?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
+bg?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
+
 children?: React.ReactNode
 
 className?: string
@@ -5810,9 +5919,7 @@ px?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 py?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
-style?: React.CSSProperties
-
-surface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
+style?: React.CSSProperties</code></pre>
           </div>
         </div>
     
@@ -6004,54 +6111,47 @@ surface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Surfaces</span>
+                <span class="ex-name">Backgrounds</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Surfaces = () =&gt; &lt;Flex align=&quot;center&quot; style={{ flexWrap: &#39;wrap&#39; }}&gt;
+              <pre><code>const Backgrounds = () =&gt; &lt;Flex align=&quot;center&quot; style={{ flexWrap: &#39;wrap&#39; }}&gt;
     &lt;Flex px=&quot;6&quot; py=&quot;4&quot;&gt;Default&lt;/Flex&gt;
-    &lt;Flex surface=&quot;0&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 0
+    &lt;Flex bg=&quot;neutral-1&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 1
               &lt;/Flex&gt;
-    &lt;Flex surface=&quot;1&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 1
+    &lt;Flex bg=&quot;neutral-2&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 2
               &lt;/Flex&gt;
-    &lt;Flex surface=&quot;2&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 2
+    &lt;Flex bg=&quot;neutral-3&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Neutral 3
               &lt;/Flex&gt;
-    &lt;Flex surface=&quot;3&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface 3
+    &lt;Flex bg={{ initial: &#39;neutral-1&#39;, sm: &#39;neutral-2&#39; }} px=&quot;6&quot; py=&quot;4&quot;&gt;Responsive Bg
               &lt;/Flex&gt;
-    &lt;Flex surface={{ initial: &#39;0&#39;, sm: &#39;1&#39; }} px=&quot;6&quot; py=&quot;4&quot;&gt;Responsive Surface
+    &lt;Flex bg=&quot;danger&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Danger
               &lt;/Flex&gt;
-    &lt;Flex surface=&quot;danger&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Danger
+    &lt;Flex bg=&quot;warning&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Warning
               &lt;/Flex&gt;
-    &lt;Flex surface=&quot;warning&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Warning
-              &lt;/Flex&gt;
-    &lt;Flex surface=&quot;success&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Surface Success
+    &lt;Flex bg=&quot;success&quot; px=&quot;6&quot; py=&quot;4&quot;&gt;Success
               &lt;/Flex&gt;
 &lt;/Flex&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SurfacesAutoIncrement</span>
+                <span class="ex-name">BgNeutralAuto</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SurfacesAutoIncrement = () =&gt; &lt;Flex direction=&quot;column&quot;&gt;
-    &lt;div style={{ maxWidth: &#39;600px&#39;, marginBottom: &#39;16px&#39; }}&gt;Using surface=&quot;auto&quot; automatically increments from the parent surface.
-                This allows components to be reusable without hardcoding surface levels.
+              <pre><code>const BgNeutralAuto = () =&gt; &lt;Flex direction=&quot;column&quot;&gt;
+    &lt;div style={{ maxWidth: &#39;600px&#39;, marginBottom: &#39;16px&#39; }}&gt;Using bg=&quot;neutral-auto&quot; on Flex auto-increments from the parent context.
+                The first Flex defaults to neutral-1 (no parent), then each nested Flex
+                increments by one, capping at neutral-3.
               &lt;/div&gt;
-    &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; surface=&quot;0&quot; direction=&quot;column&quot;&gt;
-        &lt;div&gt;Surface 0 (explicit)&lt;/div&gt;
-        &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; surface=&quot;auto&quot; direction=&quot;column&quot;&gt;
-            &lt;div&gt;Surface auto (becomes 1)&lt;/div&gt;
-            &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; surface=&quot;auto&quot; direction=&quot;column&quot;&gt;
-                &lt;div&gt;Surface auto (becomes 2)&lt;/div&gt;
-                &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; surface=&quot;auto&quot; direction=&quot;column&quot;&gt;
-                    &lt;div&gt;Surface auto (becomes 3)&lt;/div&gt;
-                    &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; surface=&quot;auto&quot; direction=&quot;column&quot;&gt;
-                        &lt;div&gt;Surface auto (stays 3 - capped)&lt;/div&gt;
-                    &lt;/Flex&gt;
-                &lt;/Flex&gt;
+    &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; bg=&quot;neutral-auto&quot; direction=&quot;column&quot;&gt;
+        &lt;div&gt;Neutral 1 (auto, no parent)&lt;/div&gt;
+        &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; bg=&quot;neutral-auto&quot; direction=&quot;column&quot;&gt;
+            &lt;div&gt;Neutral 2 (auto-incremented)&lt;/div&gt;
+            &lt;Flex px=&quot;6&quot; py=&quot;4&quot; gap=&quot;4&quot; bg=&quot;neutral-auto&quot; direction=&quot;column&quot;&gt;
+                &lt;div&gt;Neutral 3 (auto-incremented, capped)&lt;/div&gt;
             &lt;/Flex&gt;
         &lt;/Flex&gt;
     &lt;/Flex&gt;
@@ -6068,57 +6168,34 @@ surface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
-  aria-label="Header">
+  aria-label="FullPage">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-ok"></span> Header</h2>
+      <h2><span class="status-dot dot-ok"></span> FullPage</h2>
       <div class="badges">
-        <label for="c-17-backstage-ui-header-props" class="badge ok as-toggle">7 prop types</label>
         
-        <label for="c-17-backstage-ui-header-stories" class="badge ok as-toggle">14 stories</label>
+        
+        <label for="c-17-backstage-ui-fullpage-stories" class="badge ok as-toggle">3 stories</label>
         
       </div>
     </div>
-    <div class="meta" title="./packages/ui/src/components/Header/Header.stories.tsx">backstage-ui-header · ./packages/ui/src/components/Header/Header.stories.tsx</div>
+    <div class="meta" title="./packages/ui/src/components/FullPage/FullPage.stories.tsx">backstage-ui-fullpage · ./packages/ui/src/components/FullPage/FullPage.stories.tsx</div>
     
-    <div class="hint">A component that renders a toolbar.</div>
+    <div class="hint">A component that fills the remaining viewport height below the Header. The FullPage component consumes the `--bui-header-height` CSS custom property set by the Header component to calculate its height as `calc(100dvh - var(--bui-header-height, 0px))`. Content inside the FullPage scrolls independently while the Header stays visible.</div>
     <div class="kv"><span class="chip">public:  </span></div>
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-17-backstage-ui-header-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-17-backstage-ui-fullpage-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-17-backstage-ui-header-props" class="tg tg-props" type="checkbox" hidden />
+  
 
   <div class="panels">
     
     
     
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">7 prop types</span>
-            </div>
-            <pre><code>Component: packages/ui/src/components/Header/Header.tsx::Header</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>className?: string
-
-customActions?: React.ReactNode
-
-icon?: React.ReactNode
-
-onTabSelectionChange?: TabsProps[&#39;onSelectionChange&#39;]
-
-tabs?: HeaderTab[]
-
-title?: string
-
-titleLink?: string</code></pre>
-          </div>
-        </div>
     
         <div class="panel panel-stories">
           
@@ -6128,19 +6205,8 @@ titleLink?: string</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import {
-    Button,
-    ButtonIcon,
-    Container,
-    Header,
-    HeaderPage,
-    Menu,
-    MenuItem,
-    MenuTrigger,
-    Text,
-} from "@backstage/ui";
-import { MemoryRouter } from "react-router-dom";
-import { RiCloudy2Line, RiEmotionHappyLine, RiHeartLine, RiMore2Line } from "@remixicon/react";</code></pre>
+                <pre><code>import { Container, FullPage, PluginHeader, Text } from "@backstage/ui";
+import { MemoryRouter } from "react-router-dom";</code></pre>
               </div>
           
           
@@ -6151,7 +6217,43 @@ import { RiCloudy2Line, RiEmotionHappyLine, RiHeartLine, RiMore2Line } from "@re
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;Header /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; (
+  &lt;&gt;
+    &lt;PluginHeader title=&quot;My Plugin&quot; /&gt;
+    &lt;FullPage style={{ backgroundColor: &#39;#c3f0ff&#39; }}&gt;
+      &lt;Container&gt;
+        &lt;Text as=&quot;p&quot;&gt;
+          This content fills the remaining viewport height below the Header.
+        &lt;/Text&gt;
+      &lt;/Container&gt;
+    &lt;/FullPage&gt;
+  &lt;/&gt;
+);</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithScrollableContent</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithScrollableContent = () =&gt; (
+  &lt;&gt;
+    &lt;PluginHeader title=&quot;My Plugin&quot; /&gt;
+    &lt;FullPage&gt;
+      &lt;Container&gt;
+        &lt;Text as=&quot;h2&quot; variant=&quot;title-medium&quot;&gt;
+          Scrollable Content
+        &lt;/Text&gt;
+        &lt;Text as=&quot;p&quot;&gt;
+          The content below scrolls independently while the Header stays
+          pinned at the top.
+        &lt;/Text&gt;
+        {paragraphs}
+      &lt;/Container&gt;
+    &lt;/FullPage&gt;
+  &lt;/&gt;
+);</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -6160,334 +6262,21 @@ import { RiCloudy2Line, RiEmotionHappyLine, RiHeartLine, RiMore2Line } from "@re
               </div>
               
               
-              <pre><code>const WithTabs = () =&gt; &lt;Header tabs={tabs} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithCustomActions</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithCustomActions = () =&gt; &lt;Header
-    customActions={
-      &lt;&gt;
-        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
-        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
-        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
-        &lt;MenuTrigger&gt;
-          &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiMore2Line /&gt;} /&gt;
-          &lt;Menu placement=&quot;bottom end&quot;&gt;
-            {menuItems.map(option =&gt; (
-              &lt;MenuItem
-                key={option.value}
-                onAction={option.onClick}
-                href={option.href}
-              &gt;
-                {option.label}
-              &lt;/MenuItem&gt;
-            ))}
-          &lt;/Menu&gt;
-        &lt;/MenuTrigger&gt;
-      &lt;/&gt;
-    } /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithAllOptionsAndTabs</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithAllOptionsAndTabs = () =&gt; &lt;Header tabs={tabs} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithHeaderPage</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithHeaderPage = () =&gt; &lt;&gt;
-    &lt;Header
-        customActions={
-          &lt;&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
-          &lt;/&gt;
-        } /&gt;
-    &lt;HeaderPage
-        title=&quot;Page title&quot;
-        tabs={tabs2}
-        customActions={&lt;Button&gt;Custom action&lt;/Button&gt;}
-        breadcrumbs={breadcrumbs} /&gt;
-&lt;/&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithLayout</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithLayout = () =&gt; &lt;&gt;
-    &lt;Header tabs={tabs} /&gt;
-    &lt;HeaderPage
-        title=&quot;Page title&quot;
-        tabs={tabs2}
-        customActions={&lt;Button&gt;Custom action&lt;/Button&gt;}
-        breadcrumbs={breadcrumbs} /&gt;
-&lt;/&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithLayoutNoTabs</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithLayoutNoTabs = () =&gt; &lt;&gt;
-    &lt;Header /&gt;
-    &lt;HeaderPage title=&quot;Page title&quot; tabs={tabs2} /&gt;
-&lt;/&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithEverything</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithEverything = () =&gt; &lt;&gt;
-    &lt;Header
-        tabs={tabs}
-        titleLink=&quot;/&quot;
-        customActions={
-          &lt;&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
-            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
-          &lt;/&gt;
-        } /&gt;
-    &lt;HeaderPage
-        title=&quot;Page title&quot;
-        tabs={tabs2}
-        customActions={
-          &lt;&gt;
-            &lt;Button variant=&quot;secondary&quot;&gt;Secondary&lt;/Button&gt;
-            &lt;Button variant=&quot;primary&quot;&gt;Primary&lt;/Button&gt;
-          &lt;/&gt;
-        } /&gt;
-&lt;/&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithMockedURLCampaigns</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithMockedURLCampaigns = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/campaigns&#39;]}&gt;
-    &lt;Header tabs={tabs} /&gt;
-    &lt;Container&gt;
-        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/campaigns&lt;/strong&gt;
-        &lt;/Text&gt;
-        &lt;Text as=&quot;p&quot;&gt;Notice how the &quot;Campaigns&quot; tab is selected (highlighted) because it
-                      matches the current path.
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithMockedURLIntegrations</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithMockedURLIntegrations = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/integrations&#39;]}&gt;
-    &lt;Header tabs={tabs} /&gt;
-    &lt;Container&gt;
-        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/integrations&lt;/strong&gt;
-        &lt;/Text&gt;
-        &lt;Text as=&quot;p&quot;&gt;Notice how the &quot;Integrations&quot; tab is selected (highlighted) because it
-                      matches the current path.
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithMockedURLNoMatch</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithMockedURLNoMatch = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/some-other-page&#39;]}&gt;
-    &lt;Header tabs={tabs} /&gt;
-    &lt;Container&gt;
-        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/some-other-page&lt;/strong&gt;
-        &lt;/Text&gt;
-        &lt;Text as=&quot;p&quot;&gt;No tab is selected because the current path doesn&#39;t match any tab&#39;s
-                      href.
-                    &lt;/Text&gt;
-        &lt;Text as=&quot;p&quot;&gt;Tabs without href (like &quot;Overview&quot;, &quot;Checks&quot;, &quot;Tracks&quot;) fall back to
-                      React Aria&#39;s internal state.
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithTabsMatchingStrategies</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithTabsMatchingStrategies = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/mentorship/events&#39;]}&gt;
-    &lt;Header
-        title=&quot;Route Matching Demo&quot;
-        tabs={[
-          {
-            id: &#39;home&#39;,
-            label: &#39;Home&#39;,
-            href: &#39;/home&#39;,
-          },
-          {
-            id: &#39;mentorship&#39;,
-            label: &#39;Mentorship&#39;,
-            href: &#39;/mentorship&#39;,
-            matchStrategy: &#39;prefix&#39;,
-          },
-          {
-            id: &#39;catalog&#39;,
-            label: &#39;Catalog&#39;,
-            href: &#39;/catalog&#39;,
-            matchStrategy: &#39;prefix&#39;,
-          },
-          {
-            id: &#39;settings&#39;,
-            label: &#39;Settings&#39;,
-            href: &#39;/settings&#39;,
-          },
-        ]} /&gt;
-    &lt;Container&gt;
-        &lt;Text&gt;
-            &lt;strong&gt;Current URL:&lt;/strong&gt;/mentorship/events
-                    &lt;/Text&gt;
-        &lt;br /&gt;
-        &lt;Text&gt;Notice how the &quot;Mentorship&quot; tab is active even though we&#39;re on a
-                      nested route. This is because it uses{&#39; &#39;}
-            &lt;code&gt;matchStrategy=&quot;prefix&quot;&lt;/code&gt;.
-                    &lt;/Text&gt;
-        &lt;br /&gt;
-        &lt;Text&gt;• &lt;strong&gt;Home&lt;/strong&gt;: exact matching (default) - not active
-                    &lt;/Text&gt;
-        &lt;Text&gt;• &lt;strong&gt;Mentorship&lt;/strong&gt;: prefix matching - IS active (URL starts
-                      with /mentorship)
-                    &lt;/Text&gt;
-        &lt;Text&gt;• &lt;strong&gt;Catalog&lt;/strong&gt;: prefix matching - not active
-                    &lt;/Text&gt;
-        &lt;Text&gt;• &lt;strong&gt;Settings&lt;/strong&gt;: exact matching (default) - not active
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithTabsExactMatching</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithTabsExactMatching = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/mentorship/events&#39;]}&gt;
-    &lt;Header
-        title=&quot;Exact Matching Demo&quot;
-        tabs={[
-          {
-            id: &#39;mentorship&#39;,
-            label: &#39;Mentorship&#39;,
-            href: &#39;/mentorship&#39;,
-          },
-          {
-            id: &#39;events&#39;,
-            label: &#39;Events&#39;,
-            href: &#39;/mentorship/events&#39;,
-          },
-          {
-            id: &#39;mentors&#39;,
-            label: &#39;Mentors&#39;,
-            href: &#39;/mentorship/mentors&#39;,
-          },
-        ]} /&gt;
-    &lt;Container&gt;
-        &lt;Text&gt;
-            &lt;strong&gt;Current URL:&lt;/strong&gt;/mentorship/events
-                    &lt;/Text&gt;
-        &lt;br /&gt;
-        &lt;Text&gt;With default exact matching, only the &quot;Events&quot; tab is active because
-                      it exactly matches the current URL. The &quot;Mentorship&quot; tab is not active
-                      even though the URL is under /mentorship.
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithTabsPrefixMatchingDeep</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithTabsPrefixMatchingDeep = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/catalog/users/john/details&#39;]}&gt;
-    &lt;Header
-        title=&quot;Deep Nesting Demo&quot;
-        tabs={[
-          {
-            id: &#39;catalog&#39;,
-            label: &#39;Catalog&#39;,
-            href: &#39;/catalog&#39;,
-            matchStrategy: &#39;prefix&#39;,
-          },
-          {
-            id: &#39;users&#39;,
-            label: &#39;Users&#39;,
-            href: &#39;/catalog/users&#39;,
-            matchStrategy: &#39;prefix&#39;,
-          },
-          {
-            id: &#39;components&#39;,
-            label: &#39;Components&#39;,
-            href: &#39;/catalog/components&#39;,
-            matchStrategy: &#39;prefix&#39;,
-          },
-        ]} /&gt;
-    &lt;Container&gt;
+              <pre><code>const WithTabs = () =&gt; (
+  &lt;&gt;
+    &lt;PluginHeader title=&quot;My Plugin&quot; tabs={tabs} /&gt;
+    &lt;FullPage&gt;
+      &lt;Container&gt;
         &lt;Text as=&quot;p&quot;&gt;
-            &lt;strong&gt;Current URL:&lt;/strong&gt;/catalog/users/john/details
-                    &lt;/Text&gt;
-        &lt;br /&gt;
-        &lt;Text as=&quot;p&quot;&gt;Active tab is &lt;strong&gt;Users&lt;/strong&gt;because:
-                    &lt;/Text&gt;
-        &lt;ul&gt;
-            &lt;li&gt;
-                &lt;strong&gt;Catalog&lt;/strong&gt;: Matches since URL starts with /catalog
-                          &lt;/li&gt;
-            &lt;li&gt;
-                &lt;strong&gt;Users&lt;/strong&gt;: Is active since URL starts with
-                            /catalog/users, and is more specific (has more url segments) than
-                            &quot;Catalog&quot;
-                          &lt;/li&gt;
-            &lt;li&gt;
-                &lt;strong&gt;Components&lt;/strong&gt;: not active (URL doesn&#39;t start with
-                            /catalog/components)
-                          &lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;Text as=&quot;p&quot;&gt;This demonstrates how prefix matching works with deeply nested routes.
-                    &lt;/Text&gt;
-    &lt;/Container&gt;
-&lt;/MemoryRouter&gt;;</code></pre>
+          The FullPage height adjusts automatically when the Header includes
+          tabs, thanks to the ResizeObserver measuring the Header&#39;s actual
+          height.
+        &lt;/Text&gt;
+        {paragraphs}
+      &lt;/Container&gt;
+    &lt;/FullPage&gt;
+  &lt;/&gt;
+);</code></pre>
             </div>
         </div>
     
@@ -8575,14 +8364,446 @@ import { RiSparklingLine } from "@remixicon/react";</code></pre>
   no-story-error
   no-doc-error"
   role="listitem"
+  aria-label="PluginHeader">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> PluginHeader</h2>
+      <div class="badges">
+        <label for="c-25-backstage-ui-pluginheader-props" class="badge ok as-toggle">7 prop types</label>
+        
+        <label for="c-25-backstage-ui-pluginheader-stories" class="badge ok as-toggle">14 stories</label>
+        
+      </div>
+    </div>
+    <div class="meta" title="./packages/ui/src/components/PluginHeader/PluginHeader.stories.tsx">backstage-ui-pluginheader · ./packages/ui/src/components/PluginHeader/PluginHeader.stories.tsx</div>
+    
+    <div class="hint">A component that renders a plugin header with icon, title, custom actions, and navigation tabs.</div>
+    <div class="kv"><span class="chip">public:  </span></div>
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-25-backstage-ui-pluginheader-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+  <input id="c-25-backstage-ui-pluginheader-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">7 prop types</span>
+            </div>
+            <pre><code>Component: packages/ui/src/components/PluginHeader/PluginHeader.tsx::PluginHeader</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>className?: string
+
+customActions?: React.ReactNode
+
+icon?: React.ReactNode
+
+onTabSelectionChange?: TabsProps[&#39;onSelectionChange&#39;]
+
+tabs?: HeaderTab[]
+
+title?: string
+
+titleLink?: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import {
+    Button,
+    ButtonIcon,
+    Container,
+    HeaderPage,
+    Menu,
+    MenuItem,
+    MenuTrigger,
+    PluginHeader,
+    Text,
+} from "@backstage/ui";
+import { MemoryRouter } from "react-router-dom";
+import { RiCloudy2Line, RiEmotionHappyLine, RiHeartLine, RiMore2Line } from "@remixicon/react";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;PluginHeader /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithTabs</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithTabs = () =&gt; &lt;PluginHeader tabs={tabs} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithCustomActions</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithCustomActions = () =&gt; &lt;PluginHeader
+    customActions={
+      &lt;&gt;
+        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
+        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
+        &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
+        &lt;MenuTrigger&gt;
+          &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiMore2Line /&gt;} /&gt;
+          &lt;Menu placement=&quot;bottom end&quot;&gt;
+            {menuItems.map(option =&gt; (
+              &lt;MenuItem
+                key={option.value}
+                onAction={option.onClick}
+                href={option.href}
+              &gt;
+                {option.label}
+              &lt;/MenuItem&gt;
+            ))}
+          &lt;/Menu&gt;
+        &lt;/MenuTrigger&gt;
+      &lt;/&gt;
+    } /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithAllOptionsAndTabs</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithAllOptionsAndTabs = () =&gt; &lt;PluginHeader tabs={tabs} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithHeaderPage</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithHeaderPage = () =&gt; &lt;&gt;
+    &lt;PluginHeader
+        customActions={
+          &lt;&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
+          &lt;/&gt;
+        } /&gt;
+    &lt;HeaderPage
+        title=&quot;Page title&quot;
+        tabs={tabs2}
+        customActions={&lt;Button&gt;Custom action&lt;/Button&gt;}
+        breadcrumbs={breadcrumbs} /&gt;
+&lt;/&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithLayout</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithLayout = () =&gt; &lt;&gt;
+    &lt;PluginHeader tabs={tabs} /&gt;
+    &lt;HeaderPage
+        title=&quot;Page title&quot;
+        tabs={tabs2}
+        customActions={&lt;Button&gt;Custom action&lt;/Button&gt;}
+        breadcrumbs={breadcrumbs} /&gt;
+&lt;/&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithLayoutNoTabs</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithLayoutNoTabs = () =&gt; &lt;&gt;
+    &lt;PluginHeader /&gt;
+    &lt;HeaderPage title=&quot;Page title&quot; tabs={tabs2} /&gt;
+&lt;/&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithEverything</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithEverything = () =&gt; &lt;&gt;
+    &lt;PluginHeader
+        tabs={tabs}
+        titleLink=&quot;/&quot;
+        customActions={
+          &lt;&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiCloudy2Line /&gt;} /&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiEmotionHappyLine /&gt;} /&gt;
+            &lt;ButtonIcon variant=&quot;tertiary&quot; icon={&lt;RiHeartLine /&gt;} /&gt;
+          &lt;/&gt;
+        } /&gt;
+    &lt;HeaderPage
+        title=&quot;Page title&quot;
+        tabs={tabs2}
+        customActions={
+          &lt;&gt;
+            &lt;Button variant=&quot;secondary&quot;&gt;Secondary&lt;/Button&gt;
+            &lt;Button variant=&quot;primary&quot;&gt;Primary&lt;/Button&gt;
+          &lt;/&gt;
+        } /&gt;
+&lt;/&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithMockedURLCampaigns</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithMockedURLCampaigns = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/campaigns&#39;]}&gt;
+    &lt;PluginHeader tabs={tabs} /&gt;
+    &lt;Container&gt;
+        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/campaigns&lt;/strong&gt;
+        &lt;/Text&gt;
+        &lt;Text as=&quot;p&quot;&gt;Notice how the &quot;Campaigns&quot; tab is selected (highlighted) because it
+                      matches the current path.
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithMockedURLIntegrations</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithMockedURLIntegrations = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/integrations&#39;]}&gt;
+    &lt;PluginHeader tabs={tabs} /&gt;
+    &lt;Container&gt;
+        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/integrations&lt;/strong&gt;
+        &lt;/Text&gt;
+        &lt;Text as=&quot;p&quot;&gt;Notice how the &quot;Integrations&quot; tab is selected (highlighted) because it
+                      matches the current path.
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithMockedURLNoMatch</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithMockedURLNoMatch = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/some-other-page&#39;]}&gt;
+    &lt;PluginHeader tabs={tabs} /&gt;
+    &lt;Container&gt;
+        &lt;Text as=&quot;p&quot;&gt;Current URL is mocked to be: &lt;strong&gt;/some-other-page&lt;/strong&gt;
+        &lt;/Text&gt;
+        &lt;Text as=&quot;p&quot;&gt;No tab is selected because the current path doesn&#39;t match any tab&#39;s
+                      href.
+                    &lt;/Text&gt;
+        &lt;Text as=&quot;p&quot;&gt;Tabs without href (like &quot;Overview&quot;, &quot;Checks&quot;, &quot;Tracks&quot;) fall back to
+                      React Aria&#39;s internal state.
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithTabsMatchingStrategies</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithTabsMatchingStrategies = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/mentorship/events&#39;]}&gt;
+    &lt;PluginHeader
+        title=&quot;Route Matching Demo&quot;
+        tabs={[
+          {
+            id: &#39;home&#39;,
+            label: &#39;Home&#39;,
+            href: &#39;/home&#39;,
+          },
+          {
+            id: &#39;mentorship&#39;,
+            label: &#39;Mentorship&#39;,
+            href: &#39;/mentorship&#39;,
+            matchStrategy: &#39;prefix&#39;,
+          },
+          {
+            id: &#39;catalog&#39;,
+            label: &#39;Catalog&#39;,
+            href: &#39;/catalog&#39;,
+            matchStrategy: &#39;prefix&#39;,
+          },
+          {
+            id: &#39;settings&#39;,
+            label: &#39;Settings&#39;,
+            href: &#39;/settings&#39;,
+          },
+        ]} /&gt;
+    &lt;Container&gt;
+        &lt;Text&gt;
+            &lt;strong&gt;Current URL:&lt;/strong&gt;/mentorship/events
+                    &lt;/Text&gt;
+        &lt;br /&gt;
+        &lt;Text&gt;Notice how the &quot;Mentorship&quot; tab is active even though we&#39;re on a
+                      nested route. This is because it uses{&#39; &#39;}
+            &lt;code&gt;matchStrategy=&quot;prefix&quot;&lt;/code&gt;.
+                    &lt;/Text&gt;
+        &lt;br /&gt;
+        &lt;Text&gt;• &lt;strong&gt;Home&lt;/strong&gt;: exact matching (default) - not active
+                    &lt;/Text&gt;
+        &lt;Text&gt;• &lt;strong&gt;Mentorship&lt;/strong&gt;: prefix matching - IS active (URL starts
+                      with /mentorship)
+                    &lt;/Text&gt;
+        &lt;Text&gt;• &lt;strong&gt;Catalog&lt;/strong&gt;: prefix matching - not active
+                    &lt;/Text&gt;
+        &lt;Text&gt;• &lt;strong&gt;Settings&lt;/strong&gt;: exact matching (default) - not active
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithTabsExactMatching</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithTabsExactMatching = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/mentorship/events&#39;]}&gt;
+    &lt;PluginHeader
+        title=&quot;Exact Matching Demo&quot;
+        tabs={[
+          {
+            id: &#39;mentorship&#39;,
+            label: &#39;Mentorship&#39;,
+            href: &#39;/mentorship&#39;,
+          },
+          {
+            id: &#39;events&#39;,
+            label: &#39;Events&#39;,
+            href: &#39;/mentorship/events&#39;,
+          },
+          {
+            id: &#39;mentors&#39;,
+            label: &#39;Mentors&#39;,
+            href: &#39;/mentorship/mentors&#39;,
+          },
+        ]} /&gt;
+    &lt;Container&gt;
+        &lt;Text&gt;
+            &lt;strong&gt;Current URL:&lt;/strong&gt;/mentorship/events
+                    &lt;/Text&gt;
+        &lt;br /&gt;
+        &lt;Text&gt;With default exact matching, only the &quot;Events&quot; tab is active because
+                      it exactly matches the current URL. The &quot;Mentorship&quot; tab is not active
+                      even though the URL is under /mentorship.
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">WithTabsPrefixMatchingDeep</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const WithTabsPrefixMatchingDeep = () =&gt; &lt;MemoryRouter initialEntries={[&#39;/catalog/users/john/details&#39;]}&gt;
+    &lt;PluginHeader
+        title=&quot;Deep Nesting Demo&quot;
+        tabs={[
+          {
+            id: &#39;catalog&#39;,
+            label: &#39;Catalog&#39;,
+            href: &#39;/catalog&#39;,
+            matchStrategy: &#39;prefix&#39;,
+          },
+          {
+            id: &#39;users&#39;,
+            label: &#39;Users&#39;,
+            href: &#39;/catalog/users&#39;,
+            matchStrategy: &#39;prefix&#39;,
+          },
+          {
+            id: &#39;components&#39;,
+            label: &#39;Components&#39;,
+            href: &#39;/catalog/components&#39;,
+            matchStrategy: &#39;prefix&#39;,
+          },
+        ]} /&gt;
+    &lt;Container&gt;
+        &lt;Text as=&quot;p&quot;&gt;
+            &lt;strong&gt;Current URL:&lt;/strong&gt;/catalog/users/john/details
+                    &lt;/Text&gt;
+        &lt;br /&gt;
+        &lt;Text as=&quot;p&quot;&gt;Active tab is &lt;strong&gt;Users&lt;/strong&gt;because:
+                    &lt;/Text&gt;
+        &lt;ul&gt;
+            &lt;li&gt;
+                &lt;strong&gt;Catalog&lt;/strong&gt;: Matches since URL starts with /catalog
+                          &lt;/li&gt;
+            &lt;li&gt;
+                &lt;strong&gt;Users&lt;/strong&gt;: Is active since URL starts with
+                            /catalog/users, and is more specific (has more url segments) than
+                            &quot;Catalog&quot;
+                          &lt;/li&gt;
+            &lt;li&gt;
+                &lt;strong&gt;Components&lt;/strong&gt;: not active (URL doesn&#39;t start with
+                            /catalog/components)
+                          &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;Text as=&quot;p&quot;&gt;This demonstrates how prefix matching works with deeply nested routes.
+                    &lt;/Text&gt;
+    &lt;/Container&gt;
+&lt;/MemoryRouter&gt;;</code></pre>
+            </div>
+        </div>
+    
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error
+  no-doc-error"
+  role="listitem"
   aria-label="Popover">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Popover</h2>
       <div class="badges">
-        <label for="c-25-backstage-ui-popover-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-26-backstage-ui-popover-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-25-backstage-ui-popover-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-26-backstage-ui-popover-stories" class="badge ok as-toggle">13 stories</label>
         
       </div>
     </div>
@@ -8595,9 +8816,9 @@ import { RiSparklingLine } from "@remixicon/react";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-25-backstage-ui-popover-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-26-backstage-ui-popover-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-25-backstage-ui-popover-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-26-backstage-ui-popover-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -8977,9 +9198,9 @@ hideArrow?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RadioGroup</h2>
       <div class="badges">
-        <label for="c-26-backstage-ui-radiogroup-props" class="badge ok as-toggle">1 prop type</label>
-        <label for="c-26-backstage-ui-radiogroup-info" class="badge info as-toggle">1 info</label>
-        <label for="c-26-backstage-ui-radiogroup-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-27-backstage-ui-radiogroup-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-27-backstage-ui-radiogroup-info" class="badge info as-toggle">1 info</label>
+        <label for="c-27-backstage-ui-radiogroup-stories" class="badge ok as-toggle">8 stories</label>
         
       </div>
     </div>
@@ -8991,10 +9212,10 @@ hideArrow?: boolean</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-26-backstage-ui-radiogroup-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-26-backstage-ui-radiogroup-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-27-backstage-ui-radiogroup-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-27-backstage-ui-radiogroup-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-26-backstage-ui-radiogroup-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-27-backstage-ui-radiogroup-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -9158,9 +9379,9 @@ hideArrow?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SearchField</h2>
       <div class="badges">
-        <label for="c-27-backstage-ui-searchfield-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-27-backstage-ui-searchfield-info" class="badge info as-toggle">1 info</label>
-        <label for="c-27-backstage-ui-searchfield-stories" class="badge ok as-toggle">20 stories</label>
+        <label for="c-28-backstage-ui-searchfield-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-28-backstage-ui-searchfield-info" class="badge info as-toggle">1 info</label>
+        <label for="c-28-backstage-ui-searchfield-stories" class="badge ok as-toggle">20 stories</label>
         
       </div>
     </div>
@@ -9172,10 +9393,10 @@ hideArrow?: boolean</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-27-backstage-ui-searchfield-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-27-backstage-ui-searchfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-28-backstage-ui-searchfield-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-28-backstage-ui-searchfield-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-27-backstage-ui-searchfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-28-backstage-ui-searchfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -9227,7 +9448,7 @@ startCollapsed?: boolean</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Button, ButtonIcon, FieldLabel, Flex, Header, SearchField } from "@backstage/ui";
+                <pre><code>import { Button, ButtonIcon, FieldLabel, Flex, PluginHeader, SearchField } from "@backstage/ui";
 import { Form } from "react-aria-components";
 import { MemoryRouter } from "react-router-dom";
 import { RiCactusLine, RiEBike2Line } from "@remixicon/react";</code></pre>
@@ -9399,7 +9620,7 @@ import { RiCactusLine, RiEBike2Line } from "@remixicon/react";</code></pre>
               
               <pre><code>const InHeader = args =&gt; (
   &lt;&gt;
-    &lt;Header
+    &lt;PluginHeader
       title=&quot;Title&quot;
       customActions={
         &lt;&gt;
@@ -9431,7 +9652,7 @@ import { RiCactusLine, RiEBike2Line } from "@remixicon/react";</code></pre>
               
               <pre><code>const StartCollapsedInHeader = args =&gt; (
   &lt;&gt;
-    &lt;Header
+    &lt;PluginHeader
       title=&quot;Title&quot;
       customActions={
         &lt;&gt;
@@ -9549,9 +9770,9 @@ import { RiCactusLine, RiEBike2Line } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Select</h2>
       <div class="badges">
-        <label for="c-28-backstage-ui-select-props" class="badge ok as-toggle">6 prop types</label>
-        <label for="c-28-backstage-ui-select-info" class="badge info as-toggle">1 info</label>
-        <label for="c-28-backstage-ui-select-stories" class="badge ok as-toggle">21 stories</label>
+        <label for="c-29-backstage-ui-select-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-29-backstage-ui-select-info" class="badge info as-toggle">1 info</label>
+        <label for="c-29-backstage-ui-select-stories" class="badge ok as-toggle">21 stories</label>
         
       </div>
     </div>
@@ -9563,10 +9784,10 @@ import { RiCactusLine, RiEBike2Line } from "@remixicon/react";</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-28-backstage-ui-select-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-28-backstage-ui-select-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-29-backstage-ui-select-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-29-backstage-ui-select-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-28-backstage-ui-select-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-29-backstage-ui-select-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -9934,9 +10155,9 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Skeleton</h2>
       <div class="badges">
-        <label for="c-29-backstage-ui-skeleton-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-29-backstage-ui-skeleton-info" class="badge info as-toggle">1 info</label>
-        <label for="c-29-backstage-ui-skeleton-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-30-backstage-ui-skeleton-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-30-backstage-ui-skeleton-info" class="badge info as-toggle">1 info</label>
+        <label for="c-30-backstage-ui-skeleton-stories" class="badge ok as-toggle">4 stories</label>
         
       </div>
     </div>
@@ -9948,10 +10169,10 @@ import { RiCloudLine } from "@remixicon/react";</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-29-backstage-ui-skeleton-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-29-backstage-ui-skeleton-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-30-backstage-ui-skeleton-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-30-backstage-ui-skeleton-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-29-backstage-ui-skeleton-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-30-backstage-ui-skeleton-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -10063,9 +10284,9 @@ width?: number | string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Switch</h2>
       <div class="badges">
-        <label for="c-30-backstage-ui-switch-props" class="badge ok as-toggle">1 prop type</label>
-        <label for="c-30-backstage-ui-switch-info" class="badge info as-toggle">1 info</label>
-        <label for="c-30-backstage-ui-switch-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-31-backstage-ui-switch-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-31-backstage-ui-switch-info" class="badge info as-toggle">1 info</label>
+        <label for="c-31-backstage-ui-switch-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -10077,10 +10298,10 @@ width?: number | string</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-30-backstage-ui-switch-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-30-backstage-ui-switch-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-31-backstage-ui-switch-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-31-backstage-ui-switch-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-30-backstage-ui-switch-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-31-backstage-ui-switch-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -10154,9 +10375,9 @@ label?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TablePagination</h2>
       <div class="badges">
-        <label for="c-31-backstage-ui-tablepagination-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-32-backstage-ui-tablepagination-props" class="badge ok as-toggle">11 prop types</label>
         
-        <label for="c-31-backstage-ui-tablepagination-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-32-backstage-ui-tablepagination-stories" class="badge ok as-toggle">8 stories</label>
         
       </div>
     </div>
@@ -10169,9 +10390,9 @@ label?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-31-backstage-ui-tablepagination-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-32-backstage-ui-tablepagination-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-31-backstage-ui-tablepagination-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-32-backstage-ui-tablepagination-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -10338,7 +10559,7 @@ totalCount?: number</code></pre>
       <div class="badges">
         
         
-        <label for="c-32-backstage-ui-tabs-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-33-backstage-ui-tabs-stories" class="badge ok as-toggle">13 stories</label>
         
       </div>
     </div>
@@ -10351,7 +10572,7 @@ totalCount?: number</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-32-backstage-ui-tabs-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-33-backstage-ui-tabs-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -10892,7 +11113,7 @@ import { MemoryRouter } from "react-router-dom";</code></pre>
       <div class="badges">
         
         
-        <label for="c-33-backstage-ui-taggroup-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-34-backstage-ui-taggroup-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -10905,7 +11126,7 @@ import { MemoryRouter } from "react-router-dom";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-33-backstage-ui-taggroup-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-34-backstage-ui-taggroup-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -11124,9 +11345,9 @@ import { RiAccountCircleLine, RiBugLine, RiEyeLine, RiHeartLine } from "@remixic
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Text</h2>
       <div class="badges">
-        <label for="c-34-backstage-ui-text-props" class="badge ok as-toggle">5 prop types</label>
-        <label for="c-34-backstage-ui-text-info" class="badge info as-toggle">1 info</label>
-        <label for="c-34-backstage-ui-text-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-35-backstage-ui-text-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-35-backstage-ui-text-info" class="badge info as-toggle">1 info</label>
+        <label for="c-35-backstage-ui-text-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -11138,10 +11359,10 @@ import { RiAccountCircleLine, RiBugLine, RiEyeLine, RiHeartLine } from "@remixic
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-34-backstage-ui-text-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-34-backstage-ui-text-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-35-backstage-ui-text-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-35-backstage-ui-text-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-34-backstage-ui-text-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-35-backstage-ui-text-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -11380,9 +11601,9 @@ weight?: TextWeights | Partial&lt;Record&lt;Breakpoint, TextWeights&gt;&gt;</cod
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TextField</h2>
       <div class="badges">
-        <label for="c-35-backstage-ui-textfield-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-35-backstage-ui-textfield-info" class="badge info as-toggle">1 info</label>
-        <label for="c-35-backstage-ui-textfield-stories" class="badge ok as-toggle">12 stories</label>
+        <label for="c-36-backstage-ui-textfield-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-36-backstage-ui-textfield-info" class="badge info as-toggle">1 info</label>
+        <label for="c-36-backstage-ui-textfield-stories" class="badge ok as-toggle">12 stories</label>
         
       </div>
     </div>
@@ -11394,10 +11615,10 @@ weight?: TextWeights | Partial&lt;Record&lt;Breakpoint, TextWeights&gt;&gt;</cod
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-35-backstage-ui-textfield-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-35-backstage-ui-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-36-backstage-ui-textfield-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-36-backstage-ui-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-35-backstage-ui-textfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-36-backstage-ui-textfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -11607,9 +11828,9 @@ import { RiEyeLine, RiSparklingLine } from "@remixicon/react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ToggleButton</h2>
       <div class="badges">
-        <label for="c-36-backstage-ui-togglebutton-props" class="badge ok as-toggle">4 prop types</label>
-        <label for="c-36-backstage-ui-togglebutton-info" class="badge info as-toggle">1 info</label>
-        <label for="c-36-backstage-ui-togglebutton-stories" class="badge ok as-toggle">10 stories</label>
+        <label for="c-37-backstage-ui-togglebutton-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-37-backstage-ui-togglebutton-info" class="badge info as-toggle">1 info</label>
+        <label for="c-37-backstage-ui-togglebutton-stories" class="badge ok as-toggle">10 stories</label>
         
       </div>
     </div>
@@ -11621,10 +11842,10 @@ import { RiEyeLine, RiSparklingLine } from "@remixicon/react";</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-36-backstage-ui-togglebutton-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-36-backstage-ui-togglebutton-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-37-backstage-ui-togglebutton-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-37-backstage-ui-togglebutton-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-36-backstage-ui-togglebutton-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-37-backstage-ui-togglebutton-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -11641,18 +11862,13 @@ import { RiEyeLine, RiSparklingLine } from "@remixicon/react";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
             <pre><code>Component: packages/ui/src/components/ToggleButton/ToggleButton.tsx::ToggleButton</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>iconEnd?: ReactElement
 
 iconStart?: ReactElement
-
-/**
- * Surface the toggle button is placed on. Defaults to context surface if available
- */
-onSurface?: T | Partial&lt;Record&lt;Breakpoint, T&gt;&gt;
 
 size?: &#39;small&#39; | &#39;medium&#39; | Partial&lt;Record&lt;Breakpoint, &#39;small&#39; | &#39;medium&#39;&gt;&gt;</code></pre>
           </div>
@@ -11682,12 +11898,12 @@ import { RiArrowRightSLine, RiCheckLine, RiCloudLine, RiStarFill, RiStarLine } f
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Surfaces</span>
+                <span class="ex-name">Backgrounds</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Surfaces = () =&gt; (
+              <pre><code>const Backgrounds = () =&gt; (
   &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
       &lt;Text&gt;Default&lt;/Text&gt;
@@ -11696,26 +11912,20 @@ import { RiArrowRightSLine, RiCheckLine, RiCloudLine, RiStarFill, RiStarLine } f
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 0&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;0&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 1&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-1&quot; p=&quot;4&quot;&gt;
         &lt;ToggleButton&gt;Toggle&lt;/ToggleButton&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 1&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;1&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 2&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-2&quot; p=&quot;4&quot;&gt;
         &lt;ToggleButton&gt;Toggle&lt;/ToggleButton&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 2&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;2&quot; p=&quot;4&quot;&gt;
-        &lt;ToggleButton&gt;Toggle&lt;/ToggleButton&gt;
-      &lt;/Flex&gt;
-    &lt;/Flex&gt;
-    &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 3&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;3&quot; p=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 3&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-3&quot; p=&quot;4&quot;&gt;
         &lt;ToggleButton&gt;Toggle&lt;/ToggleButton&gt;
       &lt;/Flex&gt;
     &lt;/Flex&gt;
@@ -11976,9 +12186,9 @@ import { RiArrowRightSLine, RiCheckLine, RiCloudLine, RiStarFill, RiStarLine } f
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ToggleButtonGroup</h2>
       <div class="badges">
-        <label for="c-37-backstage-ui-togglebuttongroup-props" class="badge ok as-toggle">1 prop type</label>
-        <label for="c-37-backstage-ui-togglebuttongroup-info" class="badge info as-toggle">1 info</label>
-        <label for="c-37-backstage-ui-togglebuttongroup-stories" class="badge ok as-toggle">10 stories</label>
+        <label for="c-38-backstage-ui-togglebuttongroup-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-38-backstage-ui-togglebuttongroup-info" class="badge info as-toggle">1 info</label>
+        <label for="c-38-backstage-ui-togglebuttongroup-stories" class="badge ok as-toggle">10 stories</label>
         
       </div>
     </div>
@@ -11990,10 +12200,10 @@ import { RiArrowRightSLine, RiCheckLine, RiCloudLine, RiStarFill, RiStarLine } f
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-37-backstage-ui-togglebuttongroup-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-37-backstage-ui-togglebuttongroup-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-38-backstage-ui-togglebuttongroup-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-38-backstage-ui-togglebuttongroup-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-37-backstage-ui-togglebuttongroup-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-38-backstage-ui-togglebuttongroup-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -12059,12 +12269,12 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Surfaces</span>
+                <span class="ex-name">Backgrounds</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Surfaces = () =&gt; (
+              <pre><code>const Backgrounds = () =&gt; (
   &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
       &lt;Text&gt;Default&lt;/Text&gt;
@@ -12080,8 +12290,8 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 0&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;0&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 1&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-1&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
         &lt;ToggleButtonGroup
           selectionMode=&quot;single&quot;
           defaultSelectedKeys={[&#39;option1&#39;]}
@@ -12093,8 +12303,8 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 1&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;1&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 2&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-2&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
         &lt;ToggleButtonGroup
           selectionMode=&quot;single&quot;
           defaultSelectedKeys={[&#39;option1&#39;]}
@@ -12106,21 +12316,8 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
       &lt;/Flex&gt;
     &lt;/Flex&gt;
     &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 2&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;2&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
-        &lt;ToggleButtonGroup
-          selectionMode=&quot;single&quot;
-          defaultSelectedKeys={[&#39;option1&#39;]}
-        &gt;
-          &lt;ToggleButton id=&quot;option1&quot;&gt;Option 1&lt;/ToggleButton&gt;
-          &lt;ToggleButton id=&quot;option2&quot;&gt;Option 2&lt;/ToggleButton&gt;
-          &lt;ToggleButton id=&quot;option3&quot;&gt;Option 3&lt;/ToggleButton&gt;
-        &lt;/ToggleButtonGroup&gt;
-      &lt;/Flex&gt;
-    &lt;/Flex&gt;
-    &lt;Flex direction=&quot;column&quot; gap=&quot;4&quot;&gt;
-      &lt;Text&gt;On Surface 3&lt;/Text&gt;
-      &lt;Flex align=&quot;center&quot; surface=&quot;3&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
+      &lt;Text&gt;On Neutral 3&lt;/Text&gt;
+      &lt;Flex align=&quot;center&quot; bg=&quot;neutral-3&quot; p=&quot;4&quot; gap=&quot;4&quot;&gt;
         &lt;ToggleButtonGroup
           selectionMode=&quot;single&quot;
           defaultSelectedKeys={[&#39;option1&#39;]}
@@ -12277,8 +12474,8 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
       <h2><span class="status-dot dot-ok"></span> TooltipTrigger</h2>
       <div class="badges">
         
-        <label for="c-38-backstage-ui-tooltip-info" class="badge info as-toggle">1 info</label>
-        <label for="c-38-backstage-ui-tooltip-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-39-backstage-ui-tooltip-info" class="badge info as-toggle">1 info</label>
+        <label for="c-39-backstage-ui-tooltip-stories" class="badge ok as-toggle">6 stories</label>
         
       </div>
     </div>
@@ -12290,8 +12487,8 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-38-backstage-ui-tooltip-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-38-backstage-ui-tooltip-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-39-backstage-ui-tooltip-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-39-backstage-ui-tooltip-stories" class="tg tg-stories" type="checkbox" hidden />
   
   
 
@@ -12449,9 +12646,9 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> visual</h2>
       <div class="badges">
-        <label for="c-39-backstage-ui-table-visual-props" class="badge ok as-toggle">12 prop types</label>
-        <label for="c-39-backstage-ui-table-visual-info" class="badge info as-toggle">1 info</label>
-        <label for="c-39-backstage-ui-table-visual-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-40-backstage-ui-table-visual-props" class="badge ok as-toggle">12 prop types</label>
+        <label for="c-40-backstage-ui-table-visual-info" class="badge info as-toggle">1 info</label>
+        <label for="c-40-backstage-ui-table-visual-stories" class="badge ok as-toggle">9 stories</label>
         
       </div>
     </div>
@@ -12463,10 +12660,10 @@ import { RiArrowRightSLine, RiCloudLine, RiStarFill, RiStarLine } from "@remixic
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-39-backstage-ui-table-visual-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-39-backstage-ui-table-visual-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-40-backstage-ui-table-visual-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-40-backstage-ui-table-visual-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-39-backstage-ui-table-visual-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-40-backstage-ui-table-visual-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -12913,9 +13110,9 @@ style?: React.CSSProperties</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> VisuallyHidden</h2>
       <div class="badges">
-        <label for="c-40-backstage-ui-visuallyhidden-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-41-backstage-ui-visuallyhidden-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-40-backstage-ui-visuallyhidden-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-41-backstage-ui-visuallyhidden-stories" class="badge ok as-toggle">2 stories</label>
         
       </div>
     </div>
@@ -12928,9 +13125,9 @@ style?: React.CSSProperties</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-40-backstage-ui-visuallyhidden-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-41-backstage-ui-visuallyhidden-stories" class="tg tg-stories" type="checkbox" hidden />
   
-  <input id="c-40-backstage-ui-visuallyhidden-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-41-backstage-ui-visuallyhidden-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -13087,7 +13284,7 @@ const meta = preview.meta({
 
 export const Default = meta.story({
   render: () =&gt; (
-    &lt;div style={{ backgroundColor: &#39;var(--bui-bg-neutral-0)&#39; }}&gt;
+    &lt;div style={{ backgroundColor: &#39;var(--bui-bg-app)&#39; }}&gt;
       &lt;Box p=&quot;4&quot; style={{ backgroundColor: &#39;var(--bui-bg-neutral-1)&#39; }}&gt;
         &lt;Flex direction=&quot;row&quot; gap=&quot;4&quot; align=&quot;center&quot;&gt;
           &lt;Text&gt;Neutral 1&lt;/Text&gt;
@@ -13246,7 +13443,7 @@ export const Default = meta.story({
               
               
               <pre><code>const Default = () =&gt; (
-  &lt;div style={{ backgroundColor: &#39;var(--bui-bg-neutral-0)&#39; }}&gt;
+  &lt;div style={{ backgroundColor: &#39;var(--bui-bg-app)&#39; }}&gt;
     &lt;Box p=&quot;4&quot; style={{ backgroundColor: &#39;var(--bui-bg-neutral-1)&#39; }}&gt;
       &lt;Flex direction=&quot;row&quot; gap=&quot;4&quot; align=&quot;center&quot;&gt;
         &lt;Text&gt;Neutral 1&lt;/Text&gt;
