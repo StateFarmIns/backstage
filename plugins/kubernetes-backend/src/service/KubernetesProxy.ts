@@ -145,7 +145,7 @@ export class KubernetesProxy {
     let middleware = this.middlewareForClusterName.get(originalCluster.name);
     if (!middleware) {
       const logger = this.logger.child({ cluster: originalCluster.name });
-      middleware = createProxyMiddleware({
+      middleware = createProxyMiddleware(originalReq.baseUrl, {
         logProvider: () => ({
           log: logger.info.bind(logger),
           debug: logger.debug.bind(logger),
