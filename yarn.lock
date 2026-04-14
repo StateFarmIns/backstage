@@ -7838,7 +7838,7 @@ __metadata:
     minimatch: "npm:^9.0.0"
     p-limit: "npm:^3.0.2"
     portfinder: "npm:^1.0.32"
-    tar: "npm:^6.1.12"
+    tar: "npm:^7.4.3"
     ts-morph: "npm:^24.0.0"
     typedoc: "npm:^0.28.0"
     yaml-diff-patch: "npm:^2.0.0"
