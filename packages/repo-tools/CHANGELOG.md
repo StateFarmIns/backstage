@@ -1,5 +1,11 @@
 # @backstage/repo-tools
 
+## 0.15.4
+
+### Patch Changes
+
+- Upgraded `tar` dependency to v7.
+
 ## 0.15.3
 
 ### Patch Changes
