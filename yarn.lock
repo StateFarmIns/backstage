@@ -3044,7 +3044,7 @@ __metadata:
     raw-body: "npm:^2.4.1"
     selfsigned: "npm:^2.0.0"
     supertest: "npm:^7.0.0"
-    tar: "npm:^6.1.12"
+    tar: "npm:^7.4.3"
     triple-beam: "npm:^1.4.1"
     uuid: "npm:^11.0.0"
     wait-for-expect: "npm:^3.0.2"
