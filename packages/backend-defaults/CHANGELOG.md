@@ -1,5 +1,11 @@
 # @backstage/backend-defaults
 
+## 0.14.2
+
+### Patch Changes
+
+- Upgraded `tar` dependency to v7.
+
 ## 0.14.1
 
 ### Patch Changes
