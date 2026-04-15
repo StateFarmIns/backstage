@@ -997,9 +997,9 @@ const _default: OverridableFrontendPlugin<
         filter: FilterPredicate | undefined;
       };
       configInput: {
-        filter?: FilterPredicate | undefined;
         label?: string | undefined;
         title?: string | undefined;
+        filter?: FilterPredicate | undefined;
       };
       output:
         | ExtensionDataRef<
@@ -1030,8 +1030,12 @@ const _default: OverridableFrontendPlugin<
     'nav-item:catalog': OverridableExtensionDefinition<{
       kind: 'nav-item';
       name: undefined;
-      config: {};
-      configInput: {};
+      config: {
+        title: string | undefined;
+      };
+      configInput: {
+        title?: string | undefined;
+      };
       output: ExtensionDataRef<
         {
           title: string;
@@ -1054,8 +1058,8 @@ const _default: OverridableFrontendPlugin<
           | boolean
           | {
               mode: 'offset' | 'cursor';
-              offset?: number | undefined;
               limit?: number | undefined;
+              offset?: number | undefined;
             };
         path: string | undefined;
         title: string | undefined;
@@ -1065,12 +1069,12 @@ const _default: OverridableFrontendPlugin<
           | boolean
           | {
               mode: 'offset' | 'cursor';
-              offset?: number | undefined;
               limit?: number | undefined;
+              offset?: number | undefined;
             }
           | undefined;
-        title?: string | undefined;
         path?: string | undefined;
+        title?: string | undefined;
       };
       output:
         | ExtensionDataRef<string, 'core.routing.path', {}>
@@ -1179,8 +1183,8 @@ const _default: OverridableFrontendPlugin<
           | undefined;
         defaultContentOrder?: 'title' | 'natural' | undefined;
         showNavItemIcons?: boolean | undefined;
-        title?: string | undefined;
         path?: string | undefined;
+        title?: string | undefined;
       };
       output:
         | ExtensionDataRef<string, 'core.routing.path', {}>

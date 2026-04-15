@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { z } from 'zod/v4';
 import {
   createExtension,
   coreExtensionData,
@@ -32,18 +33,15 @@ export const AppRoutes = createExtension({
       coreExtensionData.reactElement,
     ]),
   },
-  config: {
-    schema: {
-      redirects: z =>
-        z
-          .array(
-            z.object({
-              from: z.string(),
-              to: z.string(),
-            }),
-          )
-          .optional(),
-    },
+  configSchema: {
+    redirects: z
+      .array(
+        z.object({
+          from: z.string(),
+          to: z.string(),
+        }),
+      )
+      .optional(),
   },
   output: [coreExtensionData.reactElement],
   factory({ inputs, config }) {
