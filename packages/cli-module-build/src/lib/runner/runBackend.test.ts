@@ -50,10 +50,11 @@ jest.mock('ctrlc-windows', () => ({
 }));
 
 const mockToConfig = jest.fn();
+const mockConfigSourcesDefault = jest.fn().mockReturnValue({});
 
 jest.mock('@backstage/config-loader', () => ({
   ConfigSources: {
-    default: () => ({}),
+    default: (...args: any[]) => mockConfigSourcesDefault(...args),
     toConfig: (...args: any[]) => mockToConfig(...args),
   },
 }));
@@ -214,6 +215,26 @@ describe('runBackend', () => {
           port: 5555,
         },
       });
+    });
+
+    it('should resolve config paths relative to targetDir', async () => {
+      mockToConfig.mockResolvedValue({
+        close: jest.fn(),
+        getOptionalString: () => undefined,
+      });
+
+      runBackend({
+        entry: 'src/index',
+        targetDir: '/root/packages/backend',
+        configPaths: ['../../config/local.yaml'],
+      });
+      await jest.advanceTimersByTimeAsync(100);
+
+      expect(mockConfigSourcesDefault).toHaveBeenCalledWith(
+        expect.objectContaining({
+          argv: ['--config', '/root/config/local.yaml'],
+        }),
+      );
     });
 
     it('should not start embedded DB for other database clients', async () => {
