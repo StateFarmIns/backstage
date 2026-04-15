@@ -1,5 +1,15 @@
 # @backstage/plugin-org
 
+## 0.7.2
+
+### Patch Changes
+
+- 6b60bd7: Replaced old config schema values from existing extensions and blueprints.
+- Updated dependencies
+  - @backstage/ui@0.14.1
+  - @backstage/frontend-plugin-api@0.16.1
+  - @backstage/plugin-catalog-react@2.1.3
+
 ## 0.7.1
 
 ### Patch Changes

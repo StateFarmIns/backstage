@@ -1,5 +1,13 @@
 # @backstage/plugin-search-react
 
+## 1.11.2
+
+### Patch Changes
+
+- 6b60bd7: Replaced old config schema values from existing extensions and blueprints.
+- Updated dependencies
+  - @backstage/frontend-plugin-api@0.16.1
+
 ## 1.11.1
 
 ### Patch Changes

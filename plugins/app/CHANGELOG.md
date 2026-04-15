@@ -1,5 +1,15 @@
 # @backstage/plugin-app
 
+## 0.4.4
+
+### Patch Changes
+
+- 23fb582: Migrated React Aria imports from individual packages (`@react-aria/toast`, `@react-aria/button`, `@react-stately/toast`) to the monopackages (`react-aria`, `react-stately`).
+- 6b60bd7: Replaced old config schema values from existing extensions and blueprints.
+- Updated dependencies
+  - @backstage/ui@0.14.1
+  - @backstage/frontend-plugin-api@0.16.1
+
 ## 0.4.3
 
 ### Patch Changes
