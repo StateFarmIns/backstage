@@ -1,5 +1,11 @@
 # @backstage/cli
 
+## 0.34.6
+
+### Patch Changes
+
+- Upgraded `tar` dependency to v7.
+
 ## 0.34.5
 
 ### Patch Changes
