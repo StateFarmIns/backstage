@@ -24,7 +24,7 @@ import {
 } from 'react-aria-components';
 import type { ReactElement, ReactNode } from 'react';
 import type { SortDescriptor as ReactStatelySortDescriptor } from 'react-stately';
-import type { ColumnSize, ColumnStaticSize } from '@react-types/table';
+import type { ColumnSize, ColumnStaticSize } from 'react-stately';
 import type { TextColors } from '../../types';
 import { TablePaginationProps } from '../TablePagination';
 
