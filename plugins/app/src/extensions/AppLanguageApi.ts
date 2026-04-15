@@ -18,7 +18,7 @@
 import { AppLanguageSelector } from '../../../../packages/core-app-api/src/apis/implementations/AppLanguageApi';
 import { appLanguageApiRef } from '@backstage/frontend-plugin-api';
 import { ApiBlueprint } from '@backstage/frontend-plugin-api';
-import { z } from 'zod';
+import { z } from 'zod/v4';
 
 export const AppLanguageApi = ApiBlueprint.makeWithOverrides({
   name: 'app-language',

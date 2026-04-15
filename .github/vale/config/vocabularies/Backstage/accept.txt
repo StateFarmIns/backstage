@@ -287,6 +287,8 @@ misconfigured
 mkdocs
 Mkdocs
 modularization
+monopackage
+monopackages
 monorepo
 monorepos
 monospace

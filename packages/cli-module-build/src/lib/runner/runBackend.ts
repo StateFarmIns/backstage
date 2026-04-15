@@ -68,7 +68,10 @@ export async function runBackend(options: RunBackendOptions) {
 
   let embeddedDb: Awaited<ReturnType<typeof startEmbeddedDb>> | undefined;
 
-  const dbClient = await readDatabaseClient(options.configPaths);
+  const dbClient = await readDatabaseClient(
+    options.configPaths,
+    options.targetDir,
+  );
   if (dbClient === 'embedded-postgres') {
     embeddedDb = await startEmbeddedDb();
     extraEnv.APP_CONFIG_backend_database = JSON.stringify({
@@ -220,14 +223,16 @@ export async function runBackend(options: RunBackendOptions) {
 
 async function readDatabaseClient(
   configPaths?: string[],
+  targetDir?: string,
 ): Promise<string | undefined> {
   const rootDir = targetPaths.rootDir;
+  const configBaseDir = targetDir ?? rootDir;
   const source = ConfigSources.default({
     rootDir,
     allowMissingDefaultConfig: true,
     argv: (configPaths ?? []).flatMap(p => [
       '--config',
-      isAbsolutePath(p) ? p : resolvePath(rootDir, p),
+      isAbsolutePath(p) ? p : resolvePath(configBaseDir, p),
     ]),
   });
 

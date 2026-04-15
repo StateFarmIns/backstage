@@ -20,7 +20,7 @@ import {
   ResizableTableContainer,
   Virtualizer,
 } from 'react-aria-components';
-import { TableLayout } from '@react-stately/layout';
+import { TableLayout } from 'react-stately';
 import { useDefinition } from '../../../hooks/useDefinition';
 import { TableWrapperDefinition } from '../definition';
 import { TableRoot } from './TableRoot';

@@ -1839,8 +1839,12 @@ export const NavItemBlueprint: ExtensionBlueprint_2<{
     {}
   >;
   inputs: {};
-  config: {};
-  configInput: {};
+  config: {
+    title: string | undefined;
+  };
+  configInput: {
+    title?: string | undefined;
+  };
   dataRefs: {
     target: ConfigurableExtensionDataRef_2<
       {
@@ -2258,8 +2262,8 @@ export const PageBlueprint: ExtensionBlueprint_2<{
     title: string | undefined;
   };
   configInput: {
-    title?: string | undefined;
     path?: string | undefined;
+    title?: string | undefined;
   };
   dataRefs: never;
 }>;
@@ -2560,8 +2564,8 @@ export const SubPageBlueprint: ExtensionBlueprint_2<{
     title: string | undefined;
   };
   configInput: {
-    title?: string | undefined;
     path?: string | undefined;
+    title?: string | undefined;
   };
   dataRefs: never;
 }>;

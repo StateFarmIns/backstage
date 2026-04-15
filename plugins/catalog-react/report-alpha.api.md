@@ -418,8 +418,8 @@ export const EntityContentLayoutBlueprint: ExtensionBlueprint<{
     filter: FilterPredicate | undefined;
   };
   configInput: {
-    filter?: FilterPredicate | undefined;
     type?: string | undefined;
+    filter?: FilterPredicate | undefined;
   };
   dataRefs: {
     filterFunction: ConfigurableExtensionDataRef<
@@ -611,9 +611,9 @@ export const EntityIconLinkBlueprint: ExtensionBlueprint<{
     filter: FilterPredicate | undefined;
   };
   configInput: {
-    filter?: FilterPredicate | undefined;
     label?: string | undefined;
     title?: string | undefined;
+    filter?: FilterPredicate | undefined;
   };
   dataRefs: {
     useProps: ConfigurableExtensionDataRef<

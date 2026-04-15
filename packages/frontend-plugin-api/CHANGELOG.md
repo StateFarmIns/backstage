@@ -1,5 +1,11 @@
 # @backstage/frontend-plugin-api
 
+## 0.16.1
+
+### Patch Changes
+
+- 6b60bd7: Replaced old config schema values from existing extensions and blueprints.
+
 ## 0.16.0
 
 ### Minor Changes

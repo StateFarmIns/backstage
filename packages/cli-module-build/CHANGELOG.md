@@ -1,5 +1,11 @@
 # @backstage/cli-module-build
 
+## 0.1.2
+
+### Patch Changes
+
+- 62d6648: Fixed config path resolution for the embedded-postgres database client detection to resolve paths relative to the target package directory rather than the workspace root.
+
 ## 0.1.1
 
 ### Patch Changes
