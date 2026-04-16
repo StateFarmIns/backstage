@@ -1,5 +1,11 @@
 # @backstage/plugin-scaffolder-node
 
+## 0.11.3
+
+### Patch Changes
+
+- Upgraded `tar` dependency to v7.
+
 ## 0.11.2
 
 ### Patch Changes
