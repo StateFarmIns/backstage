@@ -1,5 +1,11 @@
 # @backstage/ui
 
+## 0.11.3
+
+### Patch Changes
+
+- 40a02d2: Pinned `react-aria-components` dependency range to use tilde (`~`) instead of caret (`^`) to avoid pulling in minor version bumps that may include breaking changes.
+
 ## 0.11.2
 
 ### Patch Changes

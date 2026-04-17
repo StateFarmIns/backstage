@@ -1,5 +1,13 @@
 # @backstage/plugin-app-visualizer
 
+## 0.1.28
+
+### Patch Changes
+
+- 40a02d2: Pinned `react-aria-components` dependency range to use tilde (`~`) instead of caret (`^`) to avoid pulling in minor version bumps that may include breaking changes.
+- Updated dependencies
+  - @backstage/ui@0.11.3
+
 ## 0.1.27
 
 ### Patch Changes
