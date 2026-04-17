@@ -246,11 +246,17 @@ describe('eventsPlugin', () => {
           events: [{ topic: 'test', payload: { n: 1 } }],
         });
 
-        // Two clients for subscriber 2, only one gets the event
-        const res1 = helper.readEvents('tester-2');
-        const res2 = helper.readEvents('tester-2');
+        // Two clients for subscriber 2, only one should get the event.
+        // First read returns the existing event, second blocks until a new
+        // event is published.
+        const res1Promise = helper.readEvents('tester-2');
 
-        const res = await Promise.race([res1, res2]);
+        // Give the first request time to be processed before sending the second
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        const res2Promise = helper.readEvents('tester-2');
+
+        const res = await Promise.race([res1Promise, res2Promise]);
         expect(res.status).toBe(200);
         expect(res.body).toEqual({
           events: [{ topic: 'test', payload: { n: 1 } }],
@@ -259,8 +265,8 @@ describe('eventsPlugin', () => {
         // Post another event, which triggers the other client to return
         await helper.publish('test', { n: 2 }).expect(201);
 
-        const otherRes = await Promise.all([res1, res2]).then(rs =>
-          rs.find(r => r !== res),
+        const otherRes = await Promise.all([res1Promise, res2Promise]).then(
+          rs => rs.find(r => r !== res),
         );
         expect(otherRes?.status).toBe(202);
 
