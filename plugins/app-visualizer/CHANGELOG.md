@@ -1,5 +1,13 @@
 # @backstage/plugin-app-visualizer
 
+## 0.1.27
+
+### Patch Changes
+
+- Pinned `react-aria-components` dependency range from `^` (caret) to `~` (tilde) to avoid picking up breaking changes in minor releases.
+- Updated dependencies
+  - @backstage/ui@0.10.1
+
 ## 0.1.26
 
 ### Patch Changes
