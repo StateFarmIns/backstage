@@ -47,7 +47,11 @@
   },
   "dependencies": {
     "@backstage/version-bridge": "workspace:^",
+    "@react-aria/interactions": "~3.27.1",
+    "@react-stately/layout": "~4.6.0",
+    "@react-stately/overlays": "~3.6.23",
     "@react-types/calendar": "~3.8.3",
+    "@react-types/table": "~3.13.6",
     "@remixicon/react": "^4.6.0",
     "@tanstack/react-table": "^8.21.3",
     "clsx": "^2.1.1",

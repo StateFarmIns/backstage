@@ -7938,7 +7938,11 @@ __metadata:
   dependencies:
     "@backstage/cli": "workspace:^"
     "@backstage/version-bridge": "workspace:^"
+    "@react-aria/interactions": "npm:~3.27.1"
+    "@react-stately/layout": "npm:~4.6.0"
+    "@react-stately/overlays": "npm:~3.6.23"
     "@react-types/calendar": "npm:~3.8.3"
+    "@react-types/table": "npm:~3.13.6"
     "@remixicon/react": "npm:^4.6.0"
     "@tanstack/react-table": "npm:^8.21.3"
     "@types/react": "npm:^18.0.0"
@@ -16035,7 +16039,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/interactions@npm:^3.27.1":
+"@react-aria/interactions@npm:^3.27.1, @react-aria/interactions@npm:~3.27.1":
   version: 3.27.1
   resolution: "@react-aria/interactions@npm:3.27.1"
   dependencies:
@@ -16818,7 +16822,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-stately/layout@npm:^4.6.0":
+"@react-stately/layout@npm:^4.6.0, @react-stately/layout@npm:~4.6.0":
   version: 4.6.0
   resolution: "@react-stately/layout@npm:4.6.0"
   dependencies:
@@ -16880,7 +16884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-stately/overlays@npm:^3.6.23":
+"@react-stately/overlays@npm:^3.6.23, @react-stately/overlays@npm:~3.6.23":
   version: 3.6.23
   resolution: "@react-stately/overlays@npm:3.6.23"
   dependencies:
@@ -17350,7 +17354,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/table@npm:^3.13.6":
+"@react-types/table@npm:^3.13.6, @react-types/table@npm:~3.13.6":
   version: 3.13.6
   resolution: "@react-types/table@npm:3.13.6"
   dependencies:
