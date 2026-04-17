@@ -7938,6 +7938,7 @@ __metadata:
   dependencies:
     "@backstage/cli": "workspace:^"
     "@backstage/version-bridge": "workspace:^"
+    "@react-types/calendar": "npm:~3.8.3"
     "@remixicon/react": "npm:^4.6.0"
     "@tanstack/react-table": "npm:^8.21.3"
     "@types/react": "npm:^18.0.0"
@@ -17112,7 +17113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/calendar@npm:^3.8.3":
+"@react-types/calendar@npm:^3.8.3, @react-types/calendar@npm:~3.8.3":
   version: 3.8.3
   resolution: "@react-types/calendar@npm:3.8.3"
   dependencies:
