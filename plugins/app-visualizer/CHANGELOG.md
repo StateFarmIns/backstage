@@ -1,5 +1,14 @@
 # @backstage/plugin-app-visualizer
 
+## 0.2.3
+
+### Patch Changes
+
+- 3f6e04c: Tightened React Aria dependency version ranges from `^` to `~` to prevent unintended minor version upgrades.
+- Updated dependencies
+  - @backstage/ui@0.14.2
+  - @backstage/frontend-plugin-api@0.16.2
+
 ## 0.2.2
 
 ### Patch Changes
