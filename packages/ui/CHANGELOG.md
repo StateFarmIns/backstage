@@ -1,5 +1,12 @@
 # @backstage/ui
 
+## 0.13.3
+
+### Patch Changes
+
+- 6eb5f70: Pinned React Aria dependency ranges to use tilde (`~`) instead of caret (`^`), since React Aria does not strictly follow semver and may ship breaking changes in minor releases.
+- 70c2699: Added `@react-aria/interactions`, `@react-stately/layout`, `@react-stately/overlays`, and `@react-types/table` as explicit dependencies, since they are imported directly but were previously only resolved as transitive dependencies of `react-aria-components`.
+
 ## 0.13.2
 
 ### Patch Changes
