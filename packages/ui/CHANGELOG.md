@@ -1,5 +1,11 @@
 # @backstage/ui
 
+## 0.10.1
+
+### Patch Changes
+
+- Pinned `react-aria-components` dependency range from `^` (caret) to `~` (tilde) to avoid picking up breaking changes in minor releases.
+
 ## 0.10.0
 
 ### Minor Changes
