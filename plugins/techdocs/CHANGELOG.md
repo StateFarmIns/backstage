@@ -1,5 +1,17 @@
 # @backstage/plugin-techdocs
 
+## 1.17.5
+
+### Patch Changes
+
+- 59c1e54: Made the TechDocs sidebar positioning at tablet breakpoints configurable via CSS custom properties, allowing apps with custom sidebar widths to override the defaults. The available properties are `--techdocs-sidebar-closed-offset-pinned`, `--techdocs-sidebar-closed-offset-collapsed`, and `--techdocs-sidebar-open-translate`.
+- bc41a91: The `zod` dependency has been bumped from `^3.25.76 || ^4.0.0` to `^4.0.0`, since `configSchema` requires the full Zod v4 package for JSON Schema support.
+- Updated dependencies
+  - @backstage/ui@0.14.2
+  - @backstage/frontend-plugin-api@0.16.2
+  - @backstage/plugin-catalog-react@2.1.4
+  - @backstage/plugin-search-react@1.11.3
+
 ## 1.17.4
 
 ### Patch Changes

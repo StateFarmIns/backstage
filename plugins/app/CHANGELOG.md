@@ -1,5 +1,15 @@
 # @backstage/plugin-app
 
+## 0.4.5
+
+### Patch Changes
+
+- 3f6e04c: Tightened React Aria dependency version ranges from `^` to `~` to prevent unintended minor version upgrades.
+- bc41a91: The `zod` dependency has been bumped from `^3.25.76 || ^4.0.0` to `^4.0.0`, since `configSchema` requires the full Zod v4 package for JSON Schema support.
+- Updated dependencies
+  - @backstage/ui@0.14.2
+  - @backstage/frontend-plugin-api@0.16.2
+
 ## 0.4.4
 
 ### Patch Changes

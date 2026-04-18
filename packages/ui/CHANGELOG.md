@@ -1,5 +1,11 @@
 # @backstage/ui
 
+## 0.14.2
+
+### Patch Changes
+
+- 3f6e04c: Tightened React Aria dependency version ranges from `^` to `~` to prevent unintended minor version upgrades.
+
 ## 0.14.1
 
 ### Patch Changes

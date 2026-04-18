@@ -1,5 +1,16 @@
 # @backstage/plugin-catalog
 
+## 2.0.4
+
+### Patch Changes
+
+- bc41a91: The `zod` dependency has been bumped from `^3.25.76 || ^4.0.0` to `^4.0.0`, since `configSchema` requires the full Zod v4 package for JSON Schema support.
+- Updated dependencies
+  - @backstage/ui@0.14.2
+  - @backstage/frontend-plugin-api@0.16.2
+  - @backstage/plugin-catalog-react@2.1.4
+  - @backstage/plugin-search-react@1.11.3
+
 ## 2.0.3
 
 ### Patch Changes
