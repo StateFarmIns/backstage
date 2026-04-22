@@ -1,5 +1,11 @@
 # @backstage/plugin-home
 
+## 0.9.5
+
+### Patch Changes
+
+- 7365801: Fixed widgets not being movable or resizable after saved edits. Previously, entering edit mode didn't restore `isDraggable` and `isResizable`.
+
 ## 0.9.4
 
 ### Patch Changes
