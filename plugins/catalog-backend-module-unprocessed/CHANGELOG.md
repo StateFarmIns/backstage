@@ -1,5 +1,13 @@
 # @backstage/plugin-catalog-backend-module-unprocessed
 
+## 0.6.11
+
+### Patch Changes
+
+- 755d03e: Added permission authorization checks to the unprocessed entities read endpoints for pending and failed entities.
+- Updated dependencies
+  - @backstage/plugin-catalog-unprocessed-entities-common@0.0.15
+
 ## 0.6.10
 
 ### Patch Changes
