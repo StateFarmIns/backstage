@@ -2,19 +2,13 @@ name: Deploy Packages
 on:
   push:
     branches: [master, patch/*]
-  workflow_dispatch:
-    inputs:
-      force_release:
-        description: 'Force a release regardless of version changes'
-        type: boolean
-        default: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     outputs:
-      needs_release: ${{ inputs.force_release && 'true' || steps.release_check.outputs.needs_release }}
+      needs_release: ${{ steps.release_check.outputs.needs_release }}
 
     strategy:
       fail-fast: false
@@ -87,11 +81,10 @@ jobs:
           cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
 
       - name: Fetch previous commit for release check
-        if: github.event.before != ''
         run: git fetch origin '${{ github.event.before }}'
 
       - name: Check if release
-        if: inputs.force_release != true && github.event.before != ''
+        if: inputs.force_release != true
         id: release_check
         run: node scripts/check-if-release.js
         env:
