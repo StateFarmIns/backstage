@@ -398,13 +398,63 @@ export class DefaultEntitiesCatalog implements EntitiesCatalog {
 
     const sortField = cursor.orderFields.at(0);
 
-    // The first part of the query builder is a subquery that applies all of the
-    // filtering. When a sort field is specified, the search table for that key
-    // drives the query via INNER JOIN so that the (key, value, entity_id)
-    // index walks rows in sort order, letting LIMIT short-circuit. Entities
-    // that lack the sort field are excluded from both the result set and the
-    // count — this is a deliberate choice that aligns totalItems with the
-    // number of entities actually reachable through cursor pagination.
+    const normalizedFullTextFilterTerm = cursor.fullTextFilter?.term?.trim();
+    const textFilterFields = cursor.fullTextFilter?.fields ?? [
+      sortField?.field || 'metadata.uid',
+    ];
+
+    // Shared predicate logic applied to both the list CTE and the
+    // standalone count query so they stay in sync. The `searchInScope`
+    // flag indicates whether a `search` table is already joined in the
+    // target query (true for the list CTE when a sort field is set),
+    // enabling a fast-path LIKE on the already-joined row.
+    const applyPredicates = (
+      q: Knex.QueryBuilder,
+      options?: { searchInScope?: boolean },
+    ) => {
+      if (cursor.filter || cursor.query) {
+        applyEntityFilterToQuery({
+          filter: cursor.filter,
+          query: cursor.query,
+          targetQuery: q,
+          onEntityIdField: 'final_entities.entity_id',
+          knex: this.database,
+        });
+      }
+
+      if (normalizedFullTextFilterTerm) {
+        if (
+          options?.searchInScope &&
+          textFilterFields.length === 1 &&
+          textFilterFields[0] === sortField?.field
+        ) {
+          q.andWhereRaw(
+            'search.value like ?',
+            `%${normalizedFullTextFilterTerm.toLocaleLowerCase('en-US')}%`,
+          );
+        } else {
+          const matchQuery = this.database<DbSearchRow>('search')
+            .select('search.entity_id')
+            .whereIn(
+              'search.key',
+              textFilterFields.map(field => field.toLocaleLowerCase('en-US')),
+            )
+            .andWhere(function keyFilter() {
+              this.andWhereRaw(
+                'search.value like ?',
+                `%${normalizedFullTextFilterTerm.toLocaleLowerCase('en-US')}%`,
+              );
+            });
+          q.andWhere('final_entities.entity_id', 'in', matchQuery);
+        }
+      }
+    };
+
+    // The list CTE. When a sort field is specified, the search table for
+    // that key drives the query via INNER JOIN so that the covering index
+    // walks rows in sort order, letting LIMIT short-circuit. Entities
+    // that lack the sort field are excluded — this aligns totalItems with
+    // the set reachable through cursor pagination.
     const dbQuery = this.database.with(
       'filtered',
       ['entity_id', 'final_entity', ...(sortField ? ['value'] : [])],
@@ -434,71 +484,33 @@ export class DefaultEntitiesCatalog implements EntitiesCatalog {
             });
         }
 
-        // Add regular filters and/or predicate query, if given
-        if (cursor.filter || cursor.query) {
-          applyEntityFilterToQuery({
-            filter: cursor.filter,
-            query: cursor.query,
-            targetQuery: inner,
-            onEntityIdField: 'final_entities.entity_id',
-            knex: this.database,
-          });
-        }
-
-        // Add full text search filters, if given
-        const normalizedFullTextFilterTerm =
-          cursor.fullTextFilter?.term?.trim();
-        const textFilterFields = cursor.fullTextFilter?.fields ?? [
-          sortField?.field || 'metadata.uid',
-        ];
-        if (normalizedFullTextFilterTerm) {
-          if (
-            textFilterFields.length === 1 &&
-            textFilterFields[0] === sortField?.field
-          ) {
-            // If there is one item, apply the like query to the top level query which is already
-            //   filtered based on the singular sortField.
-            inner.andWhereRaw(
-              'search.value like ?',
-              `%${normalizedFullTextFilterTerm.toLocaleLowerCase('en-US')}%`,
-            );
-          } else {
-            const matchQuery = this.database<DbSearchRow>('search')
-              .select('search.entity_id')
-              // textFilterFields must be lowercased to match searchable keys in database, i.e. spec.profile.displayName -> spec.profile.displayname
-              .whereIn(
-                'search.key',
-                textFilterFields.map(field => field.toLocaleLowerCase('en-US')),
-              )
-              .andWhere(function keyFilter() {
-                this.andWhereRaw(
-                  'search.value like ?',
-                  `%${normalizedFullTextFilterTerm.toLocaleLowerCase(
-                    'en-US',
-                  )}%`,
-                );
-              });
-            inner.andWhere('final_entities.entity_id', 'in', matchQuery);
-          }
-        }
+        applyPredicates(inner, { searchInScope: !!sortField });
       },
     );
 
-    // Only pay the cost of counting the number of items if needed
+    // The list query references the CTE exactly once, allowing Postgres
+    // 12+ to inline it and short-circuit on LIMIT.
+    dbQuery.from('filtered').select('*');
+
+    // Standalone count query — runs concurrently with the list so the
+    // CTE stays single-referenced and inlineable.
+    let countQuery: Knex.QueryBuilder | undefined;
     if (shouldComputeTotalItems) {
-      // Note the intentional cross join here. The filtered_count dataset is
-      // always exactly one row, so it won't grow the result unnecessarily. But
-      // it's also important that there IS at least one row, because even if the
-      // filtered dataset is empty, we still want to know the total number of
-      // items.
-      dbQuery
-        .with('filtered_count', ['count'], inner =>
-          inner.from('filtered').count('*', { as: 'count' }),
-        )
-        .fromRaw('filtered_count, filtered')
-        .select('count', 'filtered.*');
-    } else {
-      dbQuery.from('filtered').select('*');
+      countQuery = this.database('final_entities')
+        .whereNotNull('final_entities.final_entity')
+        .count('*', { as: 'count' });
+
+      if (sortField) {
+        countQuery.whereExists(
+          this.database('search')
+            .select(this.database.raw(1))
+            .whereRaw('search.entity_id = final_entities.entity_id')
+            .where('search.key', sortField.field)
+            .whereNotNull('search.value'),
+        );
+      }
+
+      applyPredicates(countQuery);
     }
 
     const isOrderingDescending = sortField?.order === 'desc';
@@ -585,15 +597,19 @@ export class DefaultEntitiesCatalog implements EntitiesCatalog {
     // fetch an extra item to check if there are more items.
     dbQuery.limit(isFetchingBackwards ? limit : limit + 1);
 
-    const rows = shouldComputeTotalItems || limit > 0 ? await dbQuery : [];
+    // Run list and count queries concurrently
+    const [rows, countResult] = await Promise.all([
+      limit > 0 ? dbQuery : Promise.resolve([]),
+      countQuery ?? Promise.resolve(undefined),
+    ]);
 
     let totalItems: number;
     if (cursor.totalItems !== undefined) {
       totalItems = cursor.totalItems;
     } else if (cursor.skipTotalItems) {
       totalItems = 0;
-    } else if (rows.length) {
-      totalItems = Number(rows[0].count);
+    } else if (countResult?.[0]) {
+      totalItems = Number(countResult[0].count);
     } else {
       totalItems = 0;
     }
