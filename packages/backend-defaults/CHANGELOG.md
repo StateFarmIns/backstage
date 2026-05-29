@@ -1,5 +1,11 @@
 # @backstage/backend-defaults
 
+## 0.17.2
+
+### Patch Changes
+
+- eb80f4f: Fix gitlabUrlReader issue with retrieving the repository archive tree
+
 ## 0.17.1
 
 ### Patch Changes
