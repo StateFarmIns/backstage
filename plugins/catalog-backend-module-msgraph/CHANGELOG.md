@@ -1,5 +1,11 @@
 # @backstage/plugin-catalog-backend-module-msgraph
 
+## 0.10.2
+
+### Patch Changes
+
+- 190f4ce: Fixed a bug where setting `user.select` to an empty array would cause all users to be dropped from the catalog instead of using the default set of fields.
+
 ## 0.10.1
 
 ### Patch Changes
