@@ -7371,7 +7371,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.0.0"
     "@types/dompurify": "npm:^3.0.0"
     "@types/react": "npm:^18.0.0"
-    dompurify: "npm:^3.3.2"
+    dompurify: "npm:^3.4.9"
     git-url-parse: "npm:^15.0.0"
     lodash: "npm:^4.17.21"
     react: "npm:^18.0.2"
@@ -26836,7 +26836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:^3.1.7, dompurify@npm:^3.3.2, dompurify@npm:^3.4.0":
+"dompurify@npm:^3.1.7, dompurify@npm:^3.4.0":
   version: 3.4.5
   resolution: "dompurify@npm:3.4.5"
   dependencies:
@@ -26845,6 +26845,18 @@ __metadata:
     "@types/trusted-types":
       optional: true
   checksum: 10/b39c9bbd5c87dd29d1fda6446ddd7319a86c85a4c12af5cfef17697cfefbd13b8baf698d5a3cb4ee0b941f8b6e49af6a63c844246e6aee83ddb417e03470613a
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^3.4.9":
+  version: 3.4.9
+  resolution: "dompurify@npm:3.4.9"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10/2d651dcf413646e4a66202b424eade1f2a793fb22fe83dcb5a0800349ad879344fd92e76fd494ef06fb10ecb051660207844e7900156cef3e61942fdac405aa0
   languageName: node
   linkType: hard
 
