@@ -1,5 +1,11 @@
 # @backstage/backend-defaults
 
+## 0.17.4
+
+### Patch Changes
+
+- d644eb3: Fixed a bug where scheduled tasks that were initially registered with a manual trigger and later re-registered with a duration or cron cadence would never be scheduled to run.
+
 ## 0.17.3
 
 ### Patch Changes
