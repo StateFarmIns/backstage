@@ -44,7 +44,7 @@
     "@backstage/types": "workspace:^",
     "express": "^4.22.0",
     "express-promise-router": "^4.1.0",
-    "ws": "^8.20.1"
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "@backstage/backend-defaults": "workspace:^",
